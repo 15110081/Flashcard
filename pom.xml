@@ -64,6 +64,18 @@
         <version>${testng.version}</version>
         <scope>test</scope>
     </dependency>
+        <!-- template sitemesh decorator easier than tiles library -->
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>sitemesh</artifactId>
+            <version>${sitemesh.version}</version>
+        </dependency>
+        <!--JSTL-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
     </dependencies>
 
 
