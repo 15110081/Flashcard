@@ -15,7 +15,6 @@
         <module name="toeic-core-persistence-data" />
         <module name="toeic-core-service" />
         <module name="toeic-core-service-imp" />
-        <module name="toeic-core-test" />
         <module name="toeic-core-utils" />
         <module name="toeic-core-web" />
         <module name="toeic-web" />

@@ -14,3 +14,9 @@
 /toeic-core-dao/target
 /toeic-core-common/toeic-core-common.iml
 /toeic-core-common/target
+/toeic-web-logic/toeic-web-logic.iml
+/toeic-core-web/toeic-core-web.iml
+/toeic-core-utils/toeic-core-utils.iml
+/toeic-core-service-imp/toeic-core-service-imp.iml
+/toeic-core-service/toeic-core-service.iml
+/toeic-core-persistence-data/toeic-core-persistence-data.iml
