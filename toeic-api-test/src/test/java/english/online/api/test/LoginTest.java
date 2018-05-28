@@ -14,7 +14,7 @@ public class LoginTest {
         UserDao userDao=new UserDaoImpl();
         String name="admin";
         String password="123456";
-        UserEntity entity=userDao.isUserExist(name,password);
+        UserEntity entity=userDao.findUserByUsernameAndPassword(name,password);
         if(entity!=null){
             log.error("login success");
         }else{
@@ -26,7 +26,7 @@ public class LoginTest {
         UserDao userDao=new UserDaoImpl();
         String name="abc";
         String password="123456";
-        UserEntity entity=userDao.findRoleByUser(name,password);
+        UserEntity entity=userDao.findUserByUsernameAndPassword(name,password);
 
             log.error(entity.getUserId() +"-"+entity.getRoleEntity().getName());
 
