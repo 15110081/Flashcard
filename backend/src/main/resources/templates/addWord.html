@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/header :: navbar"/>
+
+<div class="container">
+    <div class="row">
+        <form class="form-horizontal" th:action="@{/word/add}" method="post"
+              enctype="multipart/form-data" th:object="${word}">
+            <!-- title -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="vocabulary">* Vocabulary</label>
+
+                <div class="col-md-8">
+                    <input type="text" name="vocabulary" class="form-control" id="vocabulary"
+                           th:value="*{vocabulary}" required="required" placeholder="vocabulary"/>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="phonetic">*
+                    Phonetic</label>
+                <div class="col-md-8">
+                    <input type="text" name="phonetic" class="form-control" id="phonetic"
+                           th:value="*{phonetic}" required="required"
+                           placeholder="phonetic"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="note">*
+                    Note</label>
+                <div class="col-md-8">
+                    <input type="text" name="note" class="form-control" id="note"
+                           th:value="*{note}" required="required"
+                           placeholder="note"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="definition">*
+                    Definition</label>
+                <div class="col-md-8">
+                    <input type="text" name="definition" class="form-control" id="definition"
+                           th:value="*{definition}" required="required"
+                           placeholder="definition"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="title">*
+                    Title</label>
+                <div class="col-md-8">
+                    <input type="text" name="title" class="form-control" id="title"
+                           th:value="*{title}" required="required"
+                           placeholder="definition"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="typeword">*
+                    Typeword</label>
+                <div class="col-md-8">
+                    <input type="text" name="typeword" class="form-control" id="typeword"
+                           th:field="*{typeword}" required="required"
+                           placeholder="definition"/>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="wordImage">Add word image</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="wordImage" type="file" name="wordImage"
+                           th:field="*{image}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="audioWord">Add audio </label>
+                </div>
+                <div class="col-md-8">
+                    <input id="audioWord" type="file" name="audioWord"
+                           th:field="*{audio}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-success">Add Word</button>
+                    <a class="btn btn-danger" th:href="@{/}">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+
+</script>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+</body>
+</html>

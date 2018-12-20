@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/header :: navbar"/>
+
+<div class="container">
+    <div>
+        <ol class="breadcrumb">
+            <li><a th:href="@{/word/wordList}"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Go back</a></li>
+            <li><a th:href="@{/word/updateWord?id=}+${word.id}">Edit</a></li>
+        </ol>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img th:src="@{/uploads/image/}+${word.imageWord}" class="img-responsive center-block" alt="image word" height="250" width="250" />
+                    <!--<div id="loadImageDiv">-->
+                    <!--<img th:src="${}" class="img-responsive center-block" alt="image word" height="250" width="250" />-->
+
+                </div>
+                </div>
+            </div>
+            <div class="col-xs-9">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><strong>vocabulary: </strong><span th:text="${word.vocabulary}"></span></p>
+                        <p><strong>note: </strong><span th:text="${word.note}"></span></p>
+                        <p><strong>phonetic Date: </strong><span th:text="${word.phonetic}"></span></p>
+                        <p><strong>phonetic Date: </strong><span th:text="${word.title}"></span></p>
+                        <p><strong>phonetic Date: </strong><span th:text="${word.typeword}"></span></p>
+                        <p><strong>phonetic Date: </strong><span th:text="${word.definition}"></span></p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div th:replace="common/header :: body-bottom-scripts"/>
+
+    <script th:inline="javascript">
+        var message = [[${word.imageWord}]];
+        var id=[[${word.id}]];
+        console.log(id);
+        console.log(message);
+        // $(document).ready(function() {
+        //     var img = $("<img />", {
+        //                     "alt": "test image",
+        //                     "style": "width: 250px; height: 250px",
+        //                     "src": "/files/"+message
+        //                 })
+        //     $.ajax({
+        //         url: "/wordapi/infoWord/"+id, success: function (result) {
+        //             var addimage="<img src=/files/"+result.imageWord+" class=\"img-responsive center-block\" alt=\"image word\" height=\"250\" width=\"250\" />";
+        //             $("#loadImageDiv").append(addimage);
+        //         }
+        //     });
+            // var img = $("<img />", {
+            //             "alt": "test image",
+            //             "style": "width: 250px; height: 250px",
+            //             "src": "/uploads/"+message
+            //         })
+            //             .on('load', function () {
+            //                 if (!this.complete ||
+            //                     typeof this.naturalWidth == "undefined" ||
+            //                     this.naturalWidth == 0) {
+            //                     alert('broken image!');
+            //                 } else {
+            //                     $("#loadImageDiv").append(img);
+            //                 }
+            //             });
+
+        // });
+        /*]]>*/
+    </script>
+
+</body>
+</html>

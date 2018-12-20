@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header"/>
+<body>
+
+
+<div th:replace="common/header :: navbar"/>
+<br />
+<br />
+<div class="container">
+    <div class="table-responsive">
+        <table id="wordListTable" class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th><input th:id="selectAllWords" type="checkbox"/></th>
+                <th>Vocabulary</th>
+                <th>Definition</th>
+                <th>Title</th>
+                <th>Note</th>
+                <th>Phonetic</th>
+                <th>TypeWord</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="word : ${wordList}">
+                <td>
+                    <input hidden="hidden" name="id" th:value="${word.id}"/>
+                    <input th:id="${word.id}" class="checkboxWord" type="checkbox"/>
+                </td>
+                <td><a th:href="@{/word/wordInfo(id=${word.id})}"><span th:text="${word.vocabulary}"></span></a></td>
+                <td th:text="${word.definition}"></td>
+                <td th:text="${word.title}"></td>
+                <td th:text="${word.note}"></td>
+                <td th:text="${word.phonetic}"></td>
+                <td th:text="${word.typeword}"></td>
+                <!--<td><img th:src="@{/image/word/}+${word.imageWord}" class="img-responsive center-block" alt="image word" height="50" width="50" /></td>-->
+                <td>
+                <input hidden="hidden" name="id" th:value="${word.id}" />
+                <button th:id="'oneword-'+${word.id}" class="btn btn-danger btn-xs delete-word" type="submit" value="delete" >
+                <span class="fa fa-times"></span>Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <button th:id="deleteSelected" class="btn btn-danger ">Delete Selected</button>
+    <button  class="btn btn-success"><a href="/wordapi/download/words.xlsx" style="text-decoration: none;color:white" >Export Excel</a></button>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+<script>
+    $(document).ready(function() {
+        $("#wordListTable").DataTable({
+            "lengthMenu": [ [5,10,15,20,-1],[5,10,15,20,"All"] ],
+            "ordering":false,
+            stateSave: true
+        });
+
+    });
+</script>
+</body>
+</html>

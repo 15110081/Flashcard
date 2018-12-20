@@ -1,0 +1,62 @@
+<div class="flex-contrainer">
+  <div class="col-md-3">
+    <div class="">
+      <cdk-virtual-scroll-viewport itemSize="20" minBufferPx = "50" maxBufferPx = "200" class="example-viewport">
+        <div
+          *cdkVirtualFor="
+            let item of data;
+            let index = index;
+            let first = first;
+            let count = count
+          "
+          (click)="onSelectedWord(item.id, index)"
+          id="activeClass"
+        >
+          <div class="item-detail" id="{{index}}">
+            <span class="col-xs-2 ">{{ index + 1 || 'Loading...' }} </span>
+            <span class="col-xs-10 scroll-data">{{ item.vocabulary||' ' }}</span>
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </div>
+  <div class="col-md-9 dashboard-right">
+    
+      <i class="material-icons md-light center" style="z-index: 3;color: white" >face</i>
+
+    <section class="container">
+      <div class="card" id="cardID">
+        <div class="front">
+          <div class="field-word">
+            <span class="tuvung" *ngIf="checkundefined()">
+              {{ selectedWord.vocabulary }}
+            </span>
+            <span class="wordtype" *ngIf="checkundefined()">
+              {{ selectedWord.typeword }}
+            </span>
+            <span class="phonetic" *ngIf="checkundefined()">{{
+              selectedWord.phonetic
+            }}</span>
+            <span class="line-3" *ngIf="checkundefined()">
+              {{ selectedWord.note }}
+            </span>
+          </div>
+        </div>
+        <div class="back">
+          <table width="100%" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr>
+                <td><img src="{{image}}" alt="No Image" class="image" /></td>
+                <td width="100%" valign="middle" align="center">
+                  <span *ngIf="checkundefined()">{{
+                    selectedWord.definition
+                  }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
