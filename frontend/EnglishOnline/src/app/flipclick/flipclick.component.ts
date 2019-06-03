@@ -3,6 +3,7 @@ import { Word } from "../model/word";
 import { FlashcardService } from "../service/flashcard.service";
 import { Hotkey, HotkeysService } from "angular2-hotkeys";
 import { first } from "rxjs/operators";
+import { TokenStorageService } from "../auth/token-storage.service";
 // import * as $ from 'jquery';
 declare var $: any;
 
@@ -31,7 +32,8 @@ export class FlipclickComponent implements OnInit {
   hotkeyUp:Hotkey | Hotkey[];
   constructor(
     private flashCardService: FlashcardService,
-    private hotkeysService: HotkeysService
+    private hotkeysService: HotkeysService,
+    private token:TokenStorageService
   ) {
    
     this.hotkeyDown = hotkeysService.add(
@@ -141,7 +143,7 @@ export class FlipclickComponent implements OnInit {
    this.backgroundSelected(index);
 
     this.image = "http://localhost:8081/wordapi/image/";
-    this.flashCardService.getWordFromId(id).subscribe(res => {
+    this.flashCardService.getWordFromId(id,this.token.getToken()).subscribe(res => {
       if (res.code == 1) {
         this.selectedWord = res.data;
         console.log(`${JSON.stringify(res.data)}`);
@@ -153,7 +155,7 @@ export class FlipclickComponent implements OnInit {
   }
   items = Array.from({ length: 90 }).map((_, i) => `Item #${i}`);
   loadWord() {
-    this.flashCardService.getAllWord().subscribe(res => {
+    this.flashCardService.getAllWord(this.token.getToken()).subscribe(res => {
       if (res.code == 1) {
         this.currentID=res.data[0].id;
         this.data = res.data;

@@ -12,13 +12,21 @@ import { HttpClientModule } from "@angular/common/http";
 import { FlipclickComponent } from './flipclick/flipclick.component';
 import {HotkeyModule} from 'angular2-hotkeys';
 import { TestflexboxComponent } from './testflexbox/testflexbox.component';
+import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { CoursesComponent } from './courses/courses.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
     FlipclickComponent,
-    TestflexboxComponent  
+    TestflexboxComponent,
+    LoginComponent,
+    HeaderComponent,
+    HomepageComponent,
+    CoursesComponent  
   ],
   imports: [
     BrowserModule,

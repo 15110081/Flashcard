@@ -1,0 +1,184 @@
+/* Minification failed. Returning unminified contents.
+(23,29-49): run-time error JS5017: Syntax error in regular expression: /[^A-Za-z0-9_-\s]/gi
+ */
+Previewdialog = function (drawningboard) {
+    var self = this;
+    self.dom;
+    self.drawningboard = drawningboard;
+    self.previewspace;
+    self.savedialog;
+
+    self.SvgTools = new SvgTools();
+
+    self.prepareCompanyName = function () {
+        var Name = "";
+        $.each(self.drawningboard.cliplist, function (index, item) {
+            if (item instanceof Text && item.enabled()) {
+                if (Name.length + item.format.text.length > 25)
+                    if (Name == "") return item.format.text;
+                    else return Name;
+                else
+                    if (Name == "") Name = item.format.text;
+                    else Name += " " + item.format.text;
+            }
+        });
+
+        return Name.replace(/[^A-Za-z0-9_-\s]/gi, '').trim();
+    };
+
+    self.loadOwnerPreview = function () {
+        $.ajax({
+            type: 'GET',
+            url: "/ownerpreview"
+        }).done(function (data) {
+
+            self.dom = $(data.trim());
+            self.dom.hide();
+            $('#logobody').append(self.dom);
+            self.registerEvents();
+            self.populatePreviewImages();
+
+            self.dom.show();
+        });
+    };
+
+    self.start = function () {
+
+        self.drawningboard.selector.unselect();
+        self.drawningboard.selector.endexplodedmode();
+
+        if ($('#logomaker').hasClass('ownermode')) {
+            self.loadOwnerPreview();
+            return;
+        }
+
+        self.drawningboard.startloading();
+
+        self.savedialog = new SaveDialog(self.drawningboard);
+
+        var data = self.savedialog.geticondata();
+
+        if (self.drawningboard.plan) {
+            data.guid = self.drawningboard.icon;
+        }
+
+        var envelope = { logo: data };
+
+        var sendSvgToServer = function (thumb) {
+
+            thumb.wrap("<div></div>");
+
+            thumb.attr("width", 600 + "px");
+            thumb.attr("height", 600 + "px");
+            envelope.svg = thumb.parent().html().replace(/NS\d+:href/gi, 'xlink:href'); // the replace is there to fix safari xlink attribute being NS1 instead (and causing invalid svg) 
+            envelope.logo.engine = self.drawningboard.engine;
+            var companyName = self.prepareCompanyName();
+
+            $.ajax({
+                type: "post",
+                url: self.drawningboard.api.logo + "userstore",
+                data: JSON.stringify(envelope),
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json'
+            }).done(function (data) {
+                var stateObj = { guid: data.obj.logo.guid };
+                window.history.pushState(stateObj, 'Free Logo Design',
+                    self.drawningboard.api.editorPage
+                    + '?lang=' + self.drawningboard.api.language + '&logo='
+                    + data.obj.logo.guid);
+
+                var url = self.drawningboard.api.previewPage
+                    + '?lang=' + self.drawningboard.api.language + '&name=' + encodeURI(companyName) + '&logo='
+                    + data.obj.logo.guid;
+
+                window.location = url;
+            });
+        }
+
+        self.SvgTools.getthumb(data, false, false, sendSvgToServer, true);
+    };
+
+    self.populatePreviewImages = function () {
+
+        var shapelist = [];
+
+        $.each(self.drawningboard.cliplist, function (index, item) {
+            if (item.enabled()) {
+                shapelist.push(item);
+            }
+        });
+
+        if (shapelist.length == 0) {
+            return;
+        }
+
+        var clipdata = self.drawningboard.selector.getclipdata(shapelist);
+
+        var colorObj = self.drawningboard.recentcolors[0];
+
+        if ((colorObj.r > 200 && colorObj.g > 200 && colorObj.b > 200) || colorObj.a < 0.5) {
+            var found = false;
+            $.each(self.drawningboard.recentcolors, function (index, item) {
+                if (!found) {
+                    if ((item.r < 200 || item.g < 200 || item.b < 200) && item.a > 0.5) {
+                        found = true;
+                        colorObj = item;
+                    }
+                }
+            });
+
+            if (!found) {
+                colorObj.r = 35;
+                colorObj.g = 143;
+                colorObj.b = 180;
+                colorObj.a = 1;
+            }
+        }
+
+        var customColor = "rgba(" + colorObj.r + ", " + colorObj.g + ", " + colorObj.b + ", " + colorObj.a + ")";
+        var customColorborder = "rgba(" + colorObj.r + ", " + colorObj.g + ", " + colorObj.b + ", 0.3)";
+
+        self.dom.find(".customcolor").css("color", customColor);
+        self.dom.find(".custombg").css("background-color", customColor);
+        self.dom.find(".preview-monitor-layout").css("border-right", "1px solid " + customColorborder)
+        self.dom.find(".preview-monitor-layout").css("border-left", "1px solid " + customColorborder)
+
+        var preview = Snap(self.drawningboard.workspace.node.cloneNode(true));
+        preview.attr({ "viewBox": clipdata.x1 + "," + clipdata.y1 + "," + clipdata.width + "," + (clipdata.height + 20) });
+        self.previewspace = Snap("svg.edit-image");
+        self.previewspace.add(preview);
+
+        self.dom.find("img.edit-image").hide();
+
+        $("#edit-image").find(".selector-part, .background-part").remove();
+
+        self.dom.find('[style*="cursor: move"]').css("cursor", "default");
+    };
+
+    self.return = function () {
+        if (self.savedialog) {
+            self.savedialog.hide();
+        }
+        self.dom.slideUp('fast', function () {
+            self.dom.remove();
+        });
+
+        $.each(self.drawningboard.cliplist, function (key, clip) {
+            clip.update();
+        });
+    };
+
+    self.registerEvents = function () {
+        self.dom.find(".edit-buttom").on('click', function () {
+            self.return();
+        });
+
+        self.dom.find(".download-free-box").on('click', function () {
+            if (self.drawningboard.ownermode) {
+                self.savedialog = new SaveDialog(self.drawningboard);
+                self.savedialog.callback = self.return;
+                self.savedialog.show();
+            }
+        });
+    };
+};

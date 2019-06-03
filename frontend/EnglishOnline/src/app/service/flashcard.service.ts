@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RestResponse } from '../model/restresponse';
 import { Word } from '../model/word';
@@ -8,19 +8,16 @@ import { Word } from '../model/word';
 })
 export class FlashcardService {
   // URL_API = environment.URL_API;
-  URL_API='http://localhost:8081/wordapi';
+  private URL_API="http://localhost:9059/worduserapi/"
   constructor(private http: HttpClient) { 
   }
 
-  getAllWord(): Observable<RestResponse> {
-    return this.http.get<RestResponse>(this.URL_API);
+  getAllWord(auth_token): Observable<RestResponse> {
+    return this.http.get<RestResponse>(this.URL_API, { headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`)});
   }
-  // getWordFromId(id: number): Observable<Word> {    
-  //   return of(fakeMovies.find(word => word.id === id));
-  // }
-  getWordFromId(id: number): Observable<RestResponse> {
-    const url = `${this.URL_API}/${id}`;
-    return this.http.get<RestResponse>(url);
+  getWordFromId(id: number,auth_token:any): Observable<RestResponse> {
+    // const url = `${this.URL_API}+${id}`;
+    return this.http.get<RestResponse>(this.URL_API + id, { headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`)});
   }
   // postArticle(word:Word) {
   //   return this.http.post<RestResponse>(this.URL_API, word);
