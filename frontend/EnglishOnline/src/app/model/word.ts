@@ -5,25 +5,24 @@ export class Word {
   note: string;
   definition: string;
   typeword: string;
-  title: string;
- audioword:string;
+  imageWord:string;
+  createdDatetime:string;
+  updatedDatetime:string;
   constructor(
-    id: number,
+    id:number,
     definition: string,
     note: string,
     phonetic: string,
-    title: string,
     typeword: string,
     vocabulary: string,
-    audioword:string
+    imageWord:string
   ) {
       this.id=id;
       this.definition=definition;
       this.note=note;
       this.phonetic=phonetic;
-      this.title=title;
       this.typeword=typeword;
       this.vocabulary=vocabulary;
-      this.audioword=audioword;
+      this.imageWord=imageWord;
   }
 }

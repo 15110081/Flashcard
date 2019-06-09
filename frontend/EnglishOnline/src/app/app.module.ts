@@ -16,6 +16,8 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CoursesComponent } from './courses/courses.component';
+import { FormsModule } from '@angular/forms';
+import { GheptuComponent } from './gheptu/gheptu.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { CoursesComponent } from './courses/courses.component';
     LoginComponent,
     HeaderComponent,
     HomepageComponent,
-    CoursesComponent  
+    CoursesComponent,
+    GheptuComponent  
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { CoursesComponent } from './courses/courses.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

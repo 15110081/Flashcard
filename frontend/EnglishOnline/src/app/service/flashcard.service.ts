@@ -30,4 +30,7 @@ export class FlashcardService {
   // deleteArticle(id: number) {
   //   return this.http.delete<RestResponse>(this.URL_API + id);
   // }
+  getTitleWord(id:number,auth_token:any):Observable<RestResponse>{
+    return this.http.get<RestResponse>(`http://localhost:9059/titleHAL/${id}/words`,{ headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`)});
+  }
 }

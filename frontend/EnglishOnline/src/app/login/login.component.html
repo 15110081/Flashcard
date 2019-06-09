@@ -1,42 +1,53 @@
 <div class="containerlogin">
     <app-header></app-header>
     <div class="wrap-login100" style="margin-top: 100px">
-        <form class="login100-form validate-form">
-
+        <form class="login100-form validate-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
             <h3 class="login100-form-title p-b-34 p-t-27" style="text-align: center;margin-bottom: 20px">
                 Đăng nhập
             </h3>
 
             <div class="wrap-input100 validate-input" data-validate="Enter username">
-                <input name="username" class="input100" type="text" placeholder="Tên người dùng">
+                <input class="input100" placeholder="Tên người dùng" type="text" id="username" name="username" [(ngModel)]="form.username" #username="ngModel" required />
                 <span class="focus-input100" data-placeholder=""></span>
             </div>
 
             <div class="wrap-input100 validate-input" data-validate="Enter password">
-                <input name="pass" class="input100" type="password" placeholder="Mật khẩu">
+                <input class="input100" placeholder="Mật khẩu" type="password" id="password" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="6" />
                 <span class="focus-input100" data-placeholder=""></span>
             </div>
 
             <div class="contact100-form-checkbox">
-                <input name="remember-me" class="input-checkbox100" id="ckb1" type="checkbox">
+                <input name="remember-me" class="input-checkbox100" id="ckb1" type="checkbox" />
                 <label class="label-checkbox100" for="ckb1">
-      Lưu mật khẩu
-    </label>
+          Lưu mật khẩu
+        </label>
             </div>
-
+            <div *ngIf="f.submitted && username.invalid">
+                <div *ngIf="username.errors.required">
+                    Username is required
+                </div>
+            </div>
+            <div *ngIf="f.submitted && password.invalid">
+                <div *ngIf="password.errors.required">
+                    Password is required
+                </div>
+                <div *ngIf="password.errors.minlength">
+                    Password must be at least 6 characters
+                </div>
+            </div>
             <div class="container-login100-form-btn">
                 <button class="button-login">
-      Đăng nhập
-    </button>
+          Đăng nhập
+        </button>
             </div>
 
             <div class="text-center p-t-90">
                 <a class="txt1" href="forgot-password.html" style="float: left;">
-      Quên mật khẩu?
-    </a>
+          Quên mật khẩu?
+        </a>
                 <a class="txt1" href="sign-up.html" style="float: right;">
-      Đăng ký
-    </a>
+          Đăng ký
+        </a>
             </div>
         </form>
     </div>

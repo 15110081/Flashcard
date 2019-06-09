@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+<div class="ModeLayout">
+    <div class="ModeLayout-controls" style="display:flex;flex-direction: column;">
+        <a href="" class="ModeLayoutBack" style="flex:1;left: 18px;
+            position: relative;">
+            <svg viewBox="0 0 9 15" width="1rem" height="1rem" fill="#3ccfcf">
+                  <path  d="M8.047 14.676L.723 7.352 8.047.027z" ></path>
+                </svg>
+            <span>Trở về</span>
+        </a>
+        <div style="flex:1;left: 30px;
+            position: relative;">
+            <svg id="mode-match-small" style="fill:#4257b2;" viewBox="540 54 35 35" width="35px" height="35px"><path d="M572.28 62h-28.56c-1.5 0-2.72 1.219-2.72 2.719v8.561c0 1.5 1.22 2.72 2.72 2.72H545v2.28c0 1.5 1.22 2.72 2.72 2.72h13.56c1.5 0 2.72-1.22 2.72-2.72V76h8.28c1.5 0 2.72-1.22 2.72-2.72v-8.561c0-1.5-1.22-2.719-2.72-2.719zM562 78.28c0 .396-.323.72-.72.72h-13.56a.721.721 0 0 1-.72-.72v-6.519a.72.72 0 0 1 .72-.719h13.56a.72.72 0 0 1 .72.719v6.519zm11-5c0 .396-.323.72-.72.72H564v-2.239c0-1.5-1.22-2.719-2.72-2.719h-13.56c-1.5 0-2.72 1.219-2.72 2.719V74h-1.28a.721.721 0 0 1-.72-.72v-8.561a.72.72 0 0 1 .72-.719h28.56a.72.72 0 0 1 .72.719v8.561zM558 74h-7a1 1 0 1 0 0 2h7a1 1 0 1 0 0-2z"></path></svg>
+            <span style="font-size:0.875rem;    left: 23px;
+                position: relative;font-weight: 700;">Ghép thẻ</span>
+        </div>
+        <div style="flex:3;left: 10px;
+            position: relative;">
+            <div style="font-size:12px;font-weight: 600;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                letter-spacing: 0.0625rem;
+                line-height: 1.333333333333333;">Thời gian</div>
+            <div id="timer" style="font-size:30px;color: #4257b2;
+                transition: all 120ms cubic-bezier(0.47,0,0.745,0.715);">36.047,6</div>
+        </div>
+
+        <button id="start">start</button>
+        <button id="stop">stop</button>
+        <button id="reset">reset</button>
+        <button data-rg="grid-1">Click me!</button>
+    </div>
+    <div style="height: 100%;
+    position: relative;width:79%;float:right;    top: 24px;">
+        <div class="grid" id="grid-1">
+            <div class="parallax-container">
+                <div class="parallax1">
+                </div>
+                <span class="test">TEST</span>
+            </div>
+            <div class="parallax-container">
+                <div class="parallax1">
+                </div>
+                <span class="test">TEST</span>
+            </div>
+            <div id="5" class="rg_item">Item 5</div>
+            <div id="5" class="rg_item">Item 5</div>
+            <div id="6" class="rg_item">Item 6</div>
+            <div id="7" class="rg_item">Item 7</div>
+            <div id="5" class="rg_item">Item 5</div>
+            <div id="8" class="rg_item">Item 8</div>
+            <div id="9" class="rg_item">Item 9</div>
+            <div id="5" class="rg_item">Item 5</div>
+            <div id="10" class="rg_item">Item 10</div>
+            <div id="11" class="rg_item">Item 11</div>
+            <div id="12" class="rg_item">Item 12</div>
+
+        </div>
+
+    </div>
+</div>
