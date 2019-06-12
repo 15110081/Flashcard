@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Sanitizer } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Word } from '../model/word';
 import { FlashcardService } from '../service/flashcard.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { GhepTu } from '../model/gheptu';
+import { DomSanitizer, SafeResourceUrl, SafeUrl  } from '@angular/platform-browser';
 declare var $:any;
 @Component({
   selector: 'app-gheptu',
@@ -12,23 +13,61 @@ declare var $:any;
   styleUrls: ['./gheptu.component.scss']
 })
 export class GheptuComponent implements OnInit {
+  numberCountItem:number=0;
 
-  constructor(private route:ActivatedRoute, private location:Location,private titleService:FlashcardService,private token:TokenStorageService) { }
-
+  constructor(private _sanitizer:DomSanitizer,private route:ActivatedRoute, private location:Location,private titleService:FlashcardService,private token:TokenStorageService) { 
+  
+  }
   ngOnInit() {
+  
+
     const id=+this.route.snapshot.paramMap.get('id');
     console.log(`this.route.snapshot.paramMap = ${JSON.stringify(this.route.snapshot.paramMap)}`);
-    // $(document).ready(function() {
-
-    $(".item").click(function() {
-      $(this).addClass("chooseitem");
-      console.log(this.id);
-
-    });
- 
-
+    
+    
+    // if(this.numberCountItem===2){
+    //   this.numberCountItem=0;
+    //   $(".item").click(function() {
+    //     this.numberCountItem+=1;
+    //       $(this).addClass("chooseitem");
+    //       console.log(this.id);
+       
+    //     });
+    // }
   this.countdown();
   this.getWordOfTitle();
+  }
+  idCompare:number;
+  idDisplayNone:number;
+  clickChoose(id:number,temp:any){
+    console.log(id);
+    console.log(temp);
+      // $(`#${id}`).click(function() {
+         this.numberCountItem+=1;
+        if(this.numberCountItem===1) {
+          this.idCompare=$(`#${id}`).val();
+          this.idDisplayNone=id;
+        }
+         console.log("count:"+this.numberCountItem);
+          $(`#${id}`+temp).addClass("chooseitem");
+         console.log("idCompare:"+this.idCompare);
+         console.log("idTemp:"+$(`#${id}`).val());
+         
+        if(this.numberCountItem===2){        
+          if( this.idCompare==$(`#${id}`).val()){
+            $(`#${this.idDisplayNone}`+"front").css("display","none");
+            $(`#${this.idDisplayNone}`+"back").css("display","none");
+            $(`#${id}`+"back").css("display","none");
+            $(`#${id}`+"front").css("display","none");
+          }
+          this.idDisplayNone=null;
+          this.idCompare=null;
+          this.numberCountItem=0;
+          $(".item").removeClass("chooseitem");
+        }
+        
+      // $(this).off("click");
+      // $(`#${id}`).off("click");
   }
   countdown(){
     var initial = 300000;
@@ -83,8 +122,8 @@ export class GheptuComponent implements OnInit {
       var patt1 = /\/[1-9]+.*/g;
       this.dataTemp = res["_embedded"]["word"];
       var temp;
-      this.dataTemp.forEach(element => {
-        let word = new Word(null, "", "", "", "","","");
+      this.dataTemp.forEach((element) => {
+        let word = new Word(null,null, "", "", "", "","");
         temp = element["_links"]["self"]["href"].match(patt1);
         word["id"] = temp.toString().slice(1);
         word["definition"] = element["definition"];
@@ -109,7 +148,8 @@ export class GheptuComponent implements OnInit {
           this.ListLoad.push(gt1);
         }
       });
-      console.log(this.shuffle(this.ListLoad));
+      this.ListLoad=this.shuffle(this.ListLoad);
+      console.log(this.ListLoad);
     });
   }
    shuffle(array) {
@@ -129,5 +169,8 @@ export class GheptuComponent implements OnInit {
     }
   
     return array;
+  }
+  getBackground(image){
+    return this._sanitizer.bypassSecurityTrustStyle(`url(http://localhost:9059/upload/file/${image})`)
   }
 }

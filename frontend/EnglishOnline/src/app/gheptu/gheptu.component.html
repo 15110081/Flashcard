@@ -34,19 +34,22 @@
     <div style="height: 100%;
     position: relative;width:79%;float:right;    top: 24px;">
         <div class="grid" id="grid-1">
-            <div class="parallax-container">
-                <div class="parallax1">
-                </div>
-                <span class="test">TEST</span>
-            </div>
-            <div class="parallax-container">
-                <div class="parallax1">
-                </div>
-                <span class="test">TEST</span>
-            </div>
-            <div id="5" class="rg_item">Item 5</div>
-            <div id="5" class="rg_item">Item 5</div>
-            <div id="6" class="rg_item">Item 6</div>
+            <ng-container *ngFor="let list of ListLoad;let i = index">
+
+                <div class="item" id="{{i}}front" *ngIf="list.definiton===''; else haveImage" (click)="clickChoose(i,'front')">{{list.name}}</div>
+                <input type="text" id="{{i}}" value={{list.id}} hidden>
+                <ng-template #haveImage>
+                    <div class="parallax-container">
+                        <div class="item parallax1" [style.background-image]="getBackground(list.name)" id="{{i}}back" (click)="clickChoose(i,'back')">
+                            <span class="fontColor">{{list.definiton}}</span>
+                        </div>
+                    </div>
+                    <input type="text" value={{list.id}} id={{i}} hidden>
+                </ng-template>
+            </ng-container>
+
+
+            <!-- <div id="6" class="rg_item">Item 6</div>
             <div id="7" class="rg_item">Item 7</div>
             <div id="5" class="rg_item">Item 5</div>
             <div id="8" class="rg_item">Item 8</div>
@@ -54,7 +57,7 @@
             <div id="5" class="rg_item">Item 5</div>
             <div id="10" class="rg_item">Item 10</div>
             <div id="11" class="rg_item">Item 11</div>
-            <div id="12" class="rg_item">Item 12</div>
+            <div id="12" class="rg_item">Item 12</div> -->
 
         </div>
 
