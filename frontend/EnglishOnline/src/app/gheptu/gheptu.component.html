@@ -24,6 +24,11 @@
                 line-height: 1.333333333333333;">Thời gian</div>
             <div id="timer" style="font-size:30px;color: #4257b2;
                 transition: all 120ms cubic-bezier(0.47,0,0.745,0.715);">36.047,6</div>
+            <!-- <div style="font-size:30px;color: #4257b2;
+                transition: all 120ms cubic-bezier(0.47,0,0.745,0.715);">
+              
+
+            </div> -->
         </div>
 
         <button id="start">start</button>
@@ -40,7 +45,7 @@
                 <input type="text" id="{{i}}" value={{list.id}} hidden>
                 <ng-template #haveImage>
                     <div class="parallax-container">
-                        <div class="item parallax1" [style.background-image]="getBackground(list.name)" id="{{i}}back" (click)="clickChoose(i,'back')">
+                        <div style="" class="item parallax1" [style.background-image]="getBackground(list.name)" id="{{i}}back" (click)="clickChoose(i,'back')">
                             <span class="fontColor">{{list.definiton}}</span>
                         </div>
                     </div>

@@ -18,6 +18,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from '@angular/forms';
 import { GheptuComponent } from './gheptu/gheptu.component';
+import { ThienthachComponent } from './thienthach/thienthach.component';
+import { StudyComponent } from './study/study.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { GheptuComponent } from './gheptu/gheptu.component';
     HeaderComponent,
     HomepageComponent,
     CoursesComponent,
-    GheptuComponent  
+    GheptuComponent,
+    ThienthachComponent,
+    StudyComponent  
   ],
   imports: [
     BrowserModule,

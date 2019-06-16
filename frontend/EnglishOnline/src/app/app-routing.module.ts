@@ -5,6 +5,8 @@ import { GheptuComponent } from './gheptu/gheptu.component';
 import { CoursesComponent } from './courses/courses.component';
 import { FlipclickComponent } from './flipclick/flipclick.component';
 import { LoginComponent } from './login/login.component';
+import { ThienthachComponent } from './thienthach/thienthach.component';
+import { StudyComponent } from './study/study.component';
 
 const routes: Routes = [{
 path:'homepage',
@@ -25,6 +27,14 @@ component:HomepageComponent
 {
   path:'login',
   component:LoginComponent
+},
+{
+  path:'thienthach/:id',
+  component:ThienthachComponent
+},
+{
+  path:'study',
+  component:StudyComponent
 },
 { 
   path: '',

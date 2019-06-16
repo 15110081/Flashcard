@@ -1,0 +1,876 @@
+.ModeLayout {
+    background-color: #f0f0f0;
+    top: 5rem !important;
+    bottom: 0;
+    left: 5.5rem;
+    position: absolute;
+    right: 5.5rem;
+    top: 0;
+    max-height: 100%;
+    transition: max-height 0.2s ease-in;
+}
+
+.ModeLayout .UIContainer {
+    display: -webkit-flex;
+    display: flex;
+    padding: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.UIContainer {
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 81.25em;
+    padding: 0 2.5rem;
+}
+
+.ModeLayout-controls {
+    bottom: 0;
+    display: block;
+    position: fixed;
+    top: 5rem;
+    width: 15rem;
+    margin-left: 3rem;
+}
+
+.ModeControls {
+    background: #fff;
+    box-shadow: 0.3125rem 0 1.25rem 0 rgba(0,0,0,0.28);
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 25px;
+}
+
+.ModeControls-sidebar {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.ModeControls-back {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 0.5rem 1rem;
+}
+
+.UILink, .UILink:visited {
+    color: #3ccfcf;
+}
+
+.ModeControls-back .UILink {
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    min-height: 2.5rem;
+}
+
+a:visited {
+    color: #4257b2;
+}
+
+.UILink {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline;
+    font: inherit;
+    margin-top: 0;
+    outline: none;
+    padding: 0;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.285714285714286;
+    font-weight: 600;
+    transition: all 120ms cubic-bezier(0.47,0,0.745,0.715);
+}
+
+.ModeControls-backIcon.UIIcon {
+    vertical-align: middle;
+}
+
+.UIIconButton .UIIcon {
+    display: block;
+    pointer-events: none;
+    height: 3rem;
+    width: 3rem;
+}
+
+.UIIcon {
+    display: inline-block;
+    fill: currentColor;
+    height: 1em;
+    width: 1em;
+}
+
+.ModeControls-main {
+    padding: 1rem;
+    top: 3.75rem !important;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.ModeControls-modeName {
+    position: relative;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.1875rem;
+    line-height: 1.214285714285714;
+    margin: 1.5rem 0 2.5rem;
+}
+
+.ModeControls-modeName .UIModeIcon {
+    margin-right: 0.75rem;
+    vertical-align: middle;
+}
+.UIModeIcon--small {
+    display: inline-block;
+    height: 2.1875rem;
+    width: 2.1875rem;
+}
+.UIModeIcon {
+    position: relative;
+}
+
+.UIModeIcon-modeIcon {
+    color: #3ccfcf;
+    fill: #4257b2;
+    height: 100%;
+    width: 100%;
+}
+
+.CardsModeControls-progress {
+    position: relative;
+}
+
+.UIProgressBar {
+    background-color: rgba(66,87,178,0.3);
+    display: block;
+    height: 0.75rem;
+    position: relative;
+    width: 100%;
+}
+
+.UIProgressBar-fill {
+    background-color: #4257b2;
+    bottom: 0;
+    display: block;
+    height: 0.75rem;
+    left: 0;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    transition: all 120ms cubic-bezier(0.47,0,0.745,0.715);
+}
+
+.CardsModeControls-progressLabel {
+    display: table;
+    margin: 0.3125rem 0 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.0625rem;
+    line-height: 1.333333333333333;
+    width: 100%;
+}
+
+.CardsModeControls-progressLabelText, .CardsModeControls-progressValue {
+    display: table-cell;
+    width: 100%;
+}
+
+.ModeControls-actions {
+    top: auto !important;
+    bottom: 5rem;
+    left: 1rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.ModeControls-actions {
+    background: #fff;
+}
+
+.UISwitch--fill {
+    margin-left: 0 !important;
+}
+.UISwitch--fill {
+    display: block;
+    width: 100%;
+}
+.UISwitch {
+    cursor: pointer;
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    vertical-align: middle;
+    width: auto;
+}
+
+.UISwitch-input {
+    cursor: inherit;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.ModeLayout-content {
+    display: -webkit-flex;
+    display: flex;
+    flex: 1;
+    margin-left: 12.1875rem;
+    padding: 1.5rem;
+    position: relative;
+    width: 100%;
+}
+
+.CardsModeView {
+    padding: 1.5rem;
+    overflow: hidden;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 2rem;
+    margin-left: 5rem;
+}
+.ModeLayout-content > * {
+    flex: 1;
+}
+
+.CardsSet {
+    -webkit-backface-visibility: hidden;
+    padding: 1.5rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.CardsList {
+    margin: 0 auto;
+    position: relative;
+    width: auto;
+    height: 100%;
+    max-width: 55rem;
+}
+
+.CardsList-container {
+    position: absolute;
+    margin-top: 0;
+    top: 0;
+    left: 0;
+    bottom: 2rem;
+    height: 100%;
+    width: 100%;
+    transition: none !important;
+    transform: none !important;
+    overflow: visible;
+}
+
+.ie11 .CardsItem.showing.current, .webkit .CardsItem.showing.current, .firefox .CardsItem.showing.current, .ie11 .CardsItem.previous, .webkit .CardsItem.previous, .firefox .CardsItem.previous, .ie11 .CardsItem.next, .webkit .CardsItem.next, .firefox .CardsItem.next {
+    display: block !important;
+    transition: transform 240ms ease,opacity 120ms linear !important;
+}
+.ie11 .CardsList.CardsList--showSingle .CardsItem, .webkit .CardsList.CardsList--showSingle .CardsItem, .firefox .CardsList.CardsList--showSingle .CardsItem {
+    background: transparent;
+    box-shadow: none;
+    transform-style: preserve-3d;
+}
+.CardsItem.showing.current {
+    display: block !important;
+}
+.CardsItem.current {
+    z-index: 6;
+}
+.CardsItem.showing {
+    display: block;
+    z-index: 5;
+}
+
+.CardsItem {
+    background: #fff;
+    bottom: 15%;
+    clear: left;
+    display: none !important;
+    height: auto !important;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: none !important;
+    zoom: 1;
+}
+
+.ie11 .CardsList.CardsList--showSingle .CardsItem .CardsItemSide .CardsItemInner, .webkit .CardsList.CardsList--showSingle .CardsItem .CardsItemSide .CardsItemInner, .firefox .CardsList.CardsList--showSingle .CardsItem .CardsItemSide .CardsItemInner {
+    background-color: #fff;
+    visibility: visible;
+}
+
+.ie11 .CardsList.CardsList--showSingle .CardsItem .CardsItemSide, .webkit .CardsList.CardsList--showSingle .CardsItem .CardsItemSide, .firefox .CardsList.CardsList--showSingle .CardsItem .CardsItemSide {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    visibility: visible;
+    z-index: 4;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: none;
+    transform-style: flat;
+}
+
+.ie11 .CardsList.CardsList--showSingle .CardsItem .CardsItemSide .CardsItemInner, .webkit .CardsList.CardsList--showSingle .CardsItem .CardsItemSide .CardsItemInner, .firefox .CardsList.CardsList--showSingle .CardsItem .CardsItemSide .CardsItemInner {
+    background-color: #fff;
+    visibility: visible;
+}
+.CardsItem.showing .CardsItemSide--firstSide .CardsItemInner, .CardsItem.showing .CardsItemSide--secondSide {
+    transition: all 200ms ease-out;
+}
+.CardsItem .CardsItemSide--firstSide .CardsItemInner {
+    height: 100%;
+    transform: none;
+    transition: none !important;
+}
+.showing-first .CardsItemSide--firstSide .CardsItemInner {
+    transform: translateY(50%);
+}
+.CardsItemSide--firstSide .CardsItemInner {
+    transform: translateY(0);
+    height: 45%;
+}
+.CardsItemInner {
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    height: 100%;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.CardsItemImage, .webkit .CardsList.CardsList--showSingle .CardsItem .CardsItemSide .CardsItemImage, .firefox .CardsList.CardsList--showSingle .CardsItem .CardsItemSide .CardsItemImage {
+    opacity: 1;
+    visiblity: visible;
+}
+.webkit .CardsItemSide .CardsItemInner-cell, .firefox .CardsItemSide .CardsItemInner-cell {
+    word-wrap: break-word;
+}
+
+.CardsItemSide .CardsItemInner-cell {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    font-size: inherit;
+    left: 0;
+    overflow: visible !important;
+    padding: 0 34px;
+    position: relative;
+    vertical-align: middle;
+    hyphens: auto;
+    word-break: break-word;
+    padding-bottom: 40rem;
+}
+
+.CardsItem-itemControls {
+    line-height: 1;
+    padding: 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 200;
+}
+.ie11 .CardsList.CardsList--showSingle .CardsItem .CardsItemSide, .webkit .CardsList.CardsList--showSingle .CardsItem .CardsItemSide, .firefox .CardsList.CardsList--showSingle .CardsItem .CardsItemSide {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    visibility: visible;
+    z-index: 4;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: none;
+    transform-style: flat;
+}
+.CardsItemSide {
+    background: transparent;
+    background-position: center center;
+    background-repeat: none;
+    background-size: contain;
+    border: 0 none;
+    box-shadow: none;
+    cursor: pointer;
+    display: block;
+    font-size: 42px;
+    height: 100% !important;
+    line-height: 1.25;
+    position: relative;
+    transform: none;
+}
+
+.CardsItem-legendBox {
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    background-color: #455358;
+    bottom: 0;
+    color: #fff;
+    display: -webkit-flex;
+    display: flex;
+    height: 3rem;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    padding: 1.25rem 0.625rem;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.CardsItem-legendBoxClick {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.UIText--specialThree {
+    font-weight: 600;
+    font-size: 0.8125rem;
+    letter-spacing: 0.086875rem;
+    line-height: 1.153846153846154;
+}
+
+.CardsItem-legendBoxTap {
+    display: none;
+}
+
+.UIText--specialThree {
+    font-weight: 600;
+    font-size: 0.8125rem;
+    letter-spacing: 0.086875rem;
+    line-height: 1.153846153846154;
+}
+
+.CardsList-navControl.previousButton {
+    left: 38%;
+}
+.CardsList-navControl {
+    position: absolute;
+    bottom: 8%;
+    z-index: 200;
+}
+
+.CardsList-navControl {
+    bottom: 0.75rem;
+}
+
+.UIIconButton {
+    display: inline-block;
+}
+
+.CardsList-navControl.previousButton .UIButton--white[disabled], .CardsList-navControl.nextButton .UIButton--white[disabled], .CardsList-navControl.previousButton .UIButton--white[disabled]:hover, .CardsList-navControl.nextButton .UIButton--white[disabled]:hover {
+    background-color: #fff !important;
+    box-shadow: none;
+}
+.UIIconButton .UIButton {
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+.UIIconButton .UIButton-wrapper {
+    padding: 0.2rem;
+
+}
+.UIButton-wrapper {
+    align-items: center;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.UIButton--white[aria-disabled="true"], .UIButton--white[disabled] {
+    box-shadow: 0 0 0.25rem #000;
+    color: #c0cace;
+}
+.UIButton[aria-disabled="true"], .UIButton[disabled] {
+    cursor: default;
+    background-color: #c0cace;
+    box-shadow: none;
+    color: #fff;
+}
+
+.UIButton--white {
+    background: #fff !important;
+    box-shadow: 0 0 0.25rem #f0f0f0;
+}
+.UIButton, .UIButton:visited {
+    background-color: #3ccfcf;
+    color: #fff;
+}
+.UIButton {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-block;
+    font: inherit;
+    max-width: 100%;
+    padding: 0.75rem 4rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.285714285714286;
+    transition: all 120ms cubic-bezier(0.47,0,0.745,0.715);
+    width: auto;
+}
+
+.UIButton--white[aria-disabled="true"], .UIButton--white[disabled] {
+    box-shadow: 0 0 0.25rem #000;
+    color: #c0cace;
+}
+.UIButton[aria-disabled="true"], .UIButton[disabled] {
+    cursor: default;
+    background-color: #c0cace;
+    box-shadow: none;
+    color: #fff;
+}
+.UIButton--white, .UIButton--white:visited {
+    color: #3ccfcf;
+}
+
+.UIButton, .UIButton:visited {
+    background-color: #3ccfcf;
+    color: #fff;
+}
+
+.CardsList-navControl.nextButton {
+    right: 38%;
+}
+
+.CardsList-bottomControls {
+    bottom: 0.75rem;
+}
+.CardsList-bottomControls {
+    position: absolute;
+    bottom: 8%;
+    right: 0;
+}
+
+.CardsList-switchButton {
+    display: inline-block;
+}
+
+.CardsList-bottomControls .UIButton.UIButton--borderless {
+    background-color: #fff;
+}
+
+.CardsList-fontSizer {
+    font-size: 42px;
+    line-height: 1.25;
+    overflow: scroll;
+    position: fixed;
+    top: 0;
+    left: -3000px;
+    visibility: hidden;
+    white-space: pre-wrap;
+}
+
+.CardsItem-starIcon {
+    display: inline-block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
+.AssistantLearnProgressBar {
+    background-color: #a0abd8;
+    height: 0.3125rem;
+}
+
+.AssistantMultipleChoiceQuestionPromptView-promptArea {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+.AssistantMultipleChoiceQuestionPromptView-promptArea {
+    position: relative;
+}
+
+.AssistantMultipleChoiceQuestionPromptView-options {
+    flex-grow: 0;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.AssistantMultipleChoiceQuestionPromptView-termOptions {
+    display: flex;
+    width: 100%;
+}
+
+.AssistantMultipleChoiceQuestionPromptView-termOption {
+    border: 0.125rem solid #3ccfcf;
+    cursor: pointer;
+    padding: 0.75rem;
+    position: relative;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.625;
+    transition: none 120ms cubic-bezier(0.47,0,0.745,0.715);
+    transition-property: border-color;
+    width: 25%;
+}
+
+.AssistantMultipleChoiceQuestionPromptView-keyboardHint {
+    left: -2px;
+    position: absolute;
+    top: -2px;
+}
+
+.UIKeyboardHint.is-white {
+    background-color: #fff;
+}
+.UIKeyboardHint {
+    background-color: #f0f0f0;
+    height: 1.5rem;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0.75rem;
+}
+
+.UIKeyboardHint-text.is-white {
+    background-color: #fff;
+    line-height: 1;
+}
+.UIKeyboardHint-text {
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    border: 0.125rem solid #c0cace;
+    color: #c0cace;
+    line-height: 1.2;
+    font-size: 0.875rem;
+    height: 1.25rem;
+    left: -0.5rem;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 1.25rem;
+}
+
+.AssistantMultipleChoiceQuestionPromptView-termOption {
+    border: 0.125rem solid #3ccfcf;
+    cursor: pointer;
+    padding: 0.75rem;
+    position: relative;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.625;
+    transition: none 120ms cubic-bezier(0.47,0,0.745,0.715);
+    transition-property: border-color;
+    width: 25%;
+}
+
+
+.FormattedTextWithImage > * + *, * + .FormattedTextWithImage > *, .FormattedTextWithImage > * + .FormattedTextWithImage > * {
+    margin-top: 0.625rem;
+}
+.FormattedTextWithImage > * {
+    display: block;
+}
+
+.AssistantMultipleChoiceQuestionPromptView-termOption + *, * + .AssistantMultipleChoiceQuestionPromptView-termOption, .AssistantMultipleChoiceQuestionPromptView-termOption + .AssistantMultipleChoiceQuestionPromptView-termOption {
+    margin-left: 1rem;
+}
+
+
+.ModeLayout-content > * {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.AssistantMultipleChoiceQuestionPromptView {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.AssistantScrollableViewLayout {
+    padding: 2rem 2rem 0;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    overflow: hidden;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.AssistantViewController {
+    background: #fff;
+    max-height: 38rem;
+    overflow: hidden;
+    position: relative;
+    font-weight: 400;
+    font-size: 1.875rem;
+    line-height: 1.266666666666667;
+    margin-left: 6rem;
+    top: 1rem;
+}
+
+.AssistantLearnProgressBar-progress {
+    background-color: #4257b2;
+    height: 100%;
+    width: 0;
+}
+
+.AssistantViewController--withProgressBar .AssistantFixedActionLayout, .AssistantViewController--withProgressBar .AssistantMultipleChoiceQuestionPromptView {
+    top: 0.3125rem;
+}
+.AssistantMultipleChoiceQuestionPromptView {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.AssistantScrollableViewLayout-topBlur {
+    background: -webkit-linear-gradient(#fff,rgba(255,255,255,0));
+    background: -moz-linear-gradient(#fff,rgba(255,255,255,0));
+    background: -ms-linear-gradient(#fff,rgba(255,255,255,0));
+    background: linear-gradient(#fff,rgba(255,255,255,0));
+    top: 0;
+}
+.AssistantScrollableViewLayout-bottomBlur, .AssistantScrollableViewLayout-topBlur {
+    height: 2rem;
+    pointer-events: none;
+    position: absolute;
+    width: calc(100% - 2 * 2rem);
+    z-index: 200;
+}
+
+.AssistantMultipleChoiceQuestionPromptView .AssistantScrollableViewLayout-content {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.AssistantScrollableViewLayout-content {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    margin-top: -2rem;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+}
+
+:not(.ie11) .AssistantMultipleChoiceQuestionPromptView-inner {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.AssistantMultipleChoiceQuestionPromptView-inner {
+    min-height: 100%;
+    overflow-y: auto;
+    padding: 2rem 2rem 0;
+}
+
+:not(.ie11) .AssistantMultipleChoiceQuestionPromptView-promptArea {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+.AssistantMultipleChoiceQuestionPromptView-promptArea {
+    position: relative;
+}
+
+.AssistantPromptTermTextWithImage {
+    cursor: pointer;
+}
+
+.TermText, .FormattedText {
+    -webkit-font-smoothing: antialiased;
+}
+.FormattedText {
+    word-wrap: break-word;
+}
+
+.FormattedTextWithImage > * {
+    display: block;
+}
+
