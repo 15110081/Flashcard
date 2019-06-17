@@ -30,7 +30,17 @@ export class ThienthachComponent implements OnInit {
    
    }
    methodInsideYourComponent(){
+    // console.log($("#textAnswer").val());
+  
+    console.log($("#input1").val());
     console.log($("#textAnswer").val());
+    this.ListLoad.forEach((value,index,array)=>{
+      
+      if($(`#input${value.id}`).val()===$("#textAnswer").val()){
+        $("#"+value.id).css("opacity","0");
+        return;
+      }
+    });
     $("#textAnswer").val("");
    }
   ngOnInit() {
@@ -89,7 +99,7 @@ export class ThienthachComponent implements OnInit {
       initialMillis = current;
       // console.log(count0/100);
       text.forEach((value,index,array)=>{
-        temp=count0/20+value.distance;
+        temp=count0/10+value.distance;
         $("#"+value.id).css("transform","translateY("+temp+"px)");     
       });
     

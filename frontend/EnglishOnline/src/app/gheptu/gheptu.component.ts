@@ -47,6 +47,7 @@ export class GheptuComponent implements OnInit {
     this.numberCountItem += 1;
     if (this.numberCountItem === 1) {
       this.idCompare = $(`#${id}`).val();
+      console.log($(`#${id}`).val());
       this.idDisplayNone = id;
     }
     console.log("count:" + this.numberCountItem);
