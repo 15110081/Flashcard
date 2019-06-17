@@ -31,21 +31,30 @@ export class ThienthachComponent implements OnInit {
    }
    methodInsideYourComponent(){
     // console.log($("#textAnswer").val());
-  
+   let flag=0;
     console.log($("#input1").val());
     console.log($("#textAnswer").val());
     this.ListLoad.forEach((value,index,array)=>{
       
       if($(`#input${value.id}`).val()===$("#textAnswer").val()){
         $("#"+value.id).css("opacity","0");
+        flag=1;
         return;
       }
     });
     $("#textAnswer").val("");
+    if(!flag)$('#textAnswer').addClass('animated shake');
+
+    setTimeout(function(){ $('#textAnswer').removeClass('animated shake'); }, 2000);
+    
    }
   ngOnInit() {
     this.getWordOfTitle();
     this.countup();
+   
+  }
+  reloadData() {
+    this.ListLoad = this.ListLoad;
   }
   countup() {
     var initial = -3000;
@@ -118,7 +127,8 @@ export class ThienthachComponent implements OnInit {
     $('#reset').on('click', function () {
       clearInterval(counter);
       count0 = initial;
-    
+      this.data = [...this.data];
+      
     });
    
   }
@@ -154,12 +164,15 @@ export class ThienthachComponent implements OnInit {
           var min=200; 
           var max=800;  
           var random =Math.floor(Math.random() * (+max - +min)) + +min; 
+          var minDistanceY=800;
+          var maxDistanceY=2300;
+          var randomDistance=Math.floor(Math.random() * (+maxDistanceY - +minDistanceY)) + +minDistanceY; 
           tt.randomNumber=random;
           tt.id=index;
-          tt.distance=-index*800;
+          tt.distance=-200*(index+1);
           tt.dinhnghia = element["definition"];
           tt.tuvung = element["vocabulary"];
-        
+          
           this.ListLoad.push(tt);
         }
       });
