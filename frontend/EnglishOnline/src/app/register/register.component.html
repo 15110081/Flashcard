@@ -1,0 +1,83 @@
+<div class="containerlogin">
+    <!-- Start Header Area -->
+    <header id="header" style="overflow: hidden; background-color:rgba(0, 0, 0, 0.9) ; color: white">
+        <div class="container">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="index.html"><img src="../../assets/img/logo.png" alt="" title="" /></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="courses.html">Học phần</a></li>
+                        <li><a href="detail.html">Chi tiết</a></li>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                    </ul>
+                </nav>
+                <!-- #nav-menu-container -->
+            </div>
+        </div>
+    </header>
+    <!-- End Header Area -->
+    <div *ngIf="isSignedUp; else signupForm">
+        Your registration is successful. Please login!
+    </div>
+    <ng-template #signupForm>
+        <div class="wrap-login100" style="margin-top: 100px">
+            <form class="login100-form validate-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <h3 class="login100-form-title p-b-34 p-t-27" style="text-align: center;margin-bottom: 20px">
+                    Đăng ký thành viên
+                </h3>
+                <div class="wrap-input100 validate-input" data-validate="Your Name">
+                    <input class="input100" type="text" placeholder="Tên người dùng" name="name" [(ngModel)]="form.name" #name="ngModel" required>
+                    <div *ngIf="f.submitted && username.invalid">
+                        <div *ngIf="username.errors.required">Username is required</div>
+                    </div>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter UserName">
+                    <input name="name" class="input100" type="text" placeholder="UserName" [(ngModel)]="form.username" #username="ngModel" required>
+                    <div *ngIf="f.submitted && name.invalid">
+                        <div *ngIf="name.errors.required">Name is required</div>
+                    </div>
+                </div>
+                <div class="wrap-input100 validate-input">
+                    <input type="text" placeholder="Email" class="input100" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
+                    <div *ngIf="f.submitted && email.invalid">
+                        <div *ngIf="email.errors.required">Email is required</div>
+                        <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input name="password" class="input100" type="password" placeholder="Mật khẩu" [(ngModel)]="form.password" #password="ngModel" required minlength="6">
+                    <div *ngIf="f.submitted && password.invalid">
+                        <div *ngIf="password.errors.required">Password is required</div>
+                        <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="button-login">
+                  Đăng ký
+                </button>
+                    <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+                        Signup failed!<br/>{{errorMessage}}
+                    </div>
+                </div>
+
+                <div class="text-center p-t-90">
+                    <span>Đã có tài khoản?</span>
+                    <a class="txt1" href="login.html">
+                              Đăng nhập
+                          </a>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+
+    <!-- ####################### Start Scroll to Top Area ####################### -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"></a>
+    </div>
+    <!-- ####################### End Scroll to Top Area ####################### -->
+
+</div>

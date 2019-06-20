@@ -23,6 +23,9 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from '@angular/forms';
 import { GheptuComponent } from './gheptu/gheptu.component';
+import { ThienthachComponent } from './thienthach/thienthach.component';
+import { StudyComponent } from './study/study.component';
+import { FlashcardComponent } from './flashcard/flashcard.component';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -37,7 +40,10 @@ var AppModule = /** @class */ (function () {
                 HeaderComponent,
                 HomepageComponent,
                 CoursesComponent,
-                GheptuComponent
+                GheptuComponent,
+                ThienthachComponent,
+                StudyComponent,
+                FlashcardComponent
             ],
             imports: [
                 BrowserModule,

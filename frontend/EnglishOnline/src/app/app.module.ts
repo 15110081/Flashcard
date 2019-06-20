@@ -20,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { GheptuComponent } from './gheptu/gheptu.component';
 import { ThienthachComponent } from './thienthach/thienthach.component';
 import { StudyComponent } from './study/study.component';
+import { FlashcardComponent } from './flashcard/flashcard.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { StudyComponent } from './study/study.component';
     CoursesComponent,
     GheptuComponent,
     ThienthachComponent,
-    StudyComponent  
+    StudyComponent,
+    FlashcardComponent,
+    RegisterComponent  
   ],
   imports: [
     BrowserModule,

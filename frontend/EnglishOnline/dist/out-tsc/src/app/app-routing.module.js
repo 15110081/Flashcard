@@ -11,6 +11,9 @@ import { GheptuComponent } from './gheptu/gheptu.component';
 import { CoursesComponent } from './courses/courses.component';
 import { FlipclickComponent } from './flipclick/flipclick.component';
 import { LoginComponent } from './login/login.component';
+import { ThienthachComponent } from './thienthach/thienthach.component';
+import { StudyComponent } from './study/study.component';
+import { FlashcardComponent } from './flashcard/flashcard.component';
 var routes = [{
         path: 'homepage',
         component: HomepageComponent
@@ -30,6 +33,18 @@ var routes = [{
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'thienthach/:id',
+        component: ThienthachComponent
+    },
+    {
+        path: 'study',
+        component: StudyComponent
+    },
+    {
+        path: 'flashcard/:id',
+        component: FlashcardComponent
     },
     {
         path: '',

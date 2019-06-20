@@ -7,6 +7,8 @@ import { FlipclickComponent } from './flipclick/flipclick.component';
 import { LoginComponent } from './login/login.component';
 import { ThienthachComponent } from './thienthach/thienthach.component';
 import { StudyComponent } from './study/study.component';
+import { FlashcardComponent } from './flashcard/flashcard.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [{
 path:'homepage',
@@ -35,6 +37,14 @@ component:HomepageComponent
 {
   path:'study',
   component:StudyComponent
+},
+{
+  path:'flashcard/:id',
+  component:FlashcardComponent
+},
+{
+path:'register',
+component:RegisterComponent
 },
 { 
   path: '',
