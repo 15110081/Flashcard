@@ -35,7 +35,7 @@ component:HomepageComponent
   component:ThienthachComponent
 },
 {
-  path:'study',
+  path:'study/:id',
   component:StudyComponent
 },
 {
