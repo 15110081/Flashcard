@@ -27,8 +27,8 @@
                                     <div class="ModeControls-main">
                                         <div aria-labelledby="modeControls-modeLabel-Thẻ" class="ModeControls-modeName" role="contentinfo">
                                             <span aria-label="Thẻ" id="modeControls-modeLabel-Thẻ" style="font-size: 16px;"> 
-                      <b> <i class="fa fa-check-circle" style="color: #4257b2; "></i>  Học</b>                                  
-                    </span>
+                                            <b> <i class="fa fa-check-circle" style="color: #4257b2; "></i>  Học</b>                                  
+                                            </span>
                                         </div>
                                         <div class="ModeControls-progress">
                                             <div class="ModeControls-progressSection">
@@ -46,12 +46,17 @@
                                         </div>
                                         <div class="ModeControls-actions" style="text-align: center;">
                                             <div class="ModeControls-action">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                                            Open modal
+                                                          </button>
+
                                                 <button class="UIButton UIButton--whiteBorder UIButton--fill" type="button" (click)="TracNghiem();">
                         <span class="UIButton-wrapper">
                           <i class="fa fa-random"></i>
                           <span>  Trộn thẻ</span>
                         </span>
                       </button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -75,20 +80,20 @@
                           <div class="AssistantMultipleChoiceQuestionPromptView-prompt">
                             <div class="AssistantPromptTermTextWithImage">
                               <div class="FormattedTextWithImage">
-                                <span class="FormattedText notranslate TermText lang-en">collide</span>
+                                <span class="FormattedText notranslate TermText lang-en" id="{{selectedWord.definition}}">{{selectedWord.vocabulary}}</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="AssistantMultipleChoiceQuestionPromptView-options">
                 <div class="AssistantMultipleChoiceQuestionPromptView-termOptions">
-                    <div class="AssistantMultipleChoiceQuestionPromptView-termOption">
+                    <div class="AssistantMultipleChoiceQuestionPromptView-termOption" *ngFor="let word of ListLoad;let i=index">
                         <div class="AssistantMultipleChoiceQuestionPromptView-keyboardHint">
-                            <div class="UIKeyboardHint is-white"><span class="UIKeyboardHint-text is-white">1</span>
+                            <div class="UIKeyboardHint is-white"><span class="UIKeyboardHint-text is-white">{{i}}</span>
                             </div>
                         </div>
                         <div class="AssistantMultipleChoiceQuestionPromptView-termOptionInner">
-                            <div class="FormattedTextWithImage"><span class="FormattedText notranslate TermText lang-vi">hạt nhỏ, mẩu nhỏ (n)<br>hạt</span>
+                            <div class="FormattedTextWithImage"><span class="FormattedText notranslate TermText lang-vi">{{word.definiton}}</span>
                                 <div class="FormattedTextWithImage-image">
                                     <div class="Image">
                                         <div class="Image-image" style="background: url(&quot;https://farm6.staticflickr.com/5100/5506171776_8c017483db_m.jpg&quot;) center center / contain no-repeat; height: 64px;"></div>
@@ -97,51 +102,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="AssistantMultipleChoiceQuestionPromptView-termOption">
-                        <div class="AssistantMultipleChoiceQuestionPromptView-keyboardHint">
-                            <div class="UIKeyboardHint is-white"><span class="UIKeyboardHint-text is-white">2</span>
-                            </div>
-                        </div>
-                        <div class="AssistantMultipleChoiceQuestionPromptView-termOptionInner">
-                            <div class="FormattedTextWithImage"><span class="FormattedText notranslate TermText lang-vi">(n) đồng vị</span>
-                                <div class="FormattedTextWithImage-image">
-                                    <div class="Image">
-                                        <div class="Image-image" style="background: url(&quot;https://o.quizlet.com/i/4ynWC6RNW_Bs-YOHLcs83A_m.jpg&quot;) center center / contain no-repeat; height: 64px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="AssistantMultipleChoiceQuestionPromptView-termOption">
-                        <div class="AssistantMultipleChoiceQuestionPromptView-keyboardHint">
-                            <div class="UIKeyboardHint is-white"><span class="UIKeyboardHint-text is-white">3</span>
-                            </div>
-                        </div>
-                        <div class="AssistantMultipleChoiceQuestionPromptView-termOptionInner">
-                            <div class="FormattedTextWithImage"><span class="FormattedText notranslate TermText lang-vi">(v) va chạm, đụng nhau</span>
-                                <div class="FormattedTextWithImage-image">
-                                    <div class="Image">
-                                        <div class="Image-image" style="background: url(&quot;https://o.quizlet.com/6hu-uVf1uUCBZNq.rJhSew_m.jpg&quot;) center center / contain no-repeat; height: 64px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="AssistantMultipleChoiceQuestionPromptView-termOption">
-                        <div class="AssistantMultipleChoiceQuestionPromptView-keyboardHint">
-                            <div class="UIKeyboardHint is-white"><span class="UIKeyboardHint-text is-white">4</span>
-                            </div>
-                        </div>
-                        <div class="AssistantMultipleChoiceQuestionPromptView-termOptionInner">
-                            <div class="FormattedTextWithImage"><span class="FormattedText notranslate TermText lang-vi">ngậm nước<br>Thuộc nước</span>
-                                <div class="FormattedTextWithImage-image">
-                                    <div class="Image">
-                                        <div class="Image-image" style="background: url(&quot;https://o.quizlet.com/97-gOr5dkldcAJ9RK6vjaA_m.png&quot;) center center / contain no-repeat; height: 64px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -155,4 +116,28 @@
 </div>
 </div>
 </div>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Modal body..
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
 </div>

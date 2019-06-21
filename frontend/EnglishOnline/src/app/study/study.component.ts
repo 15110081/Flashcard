@@ -24,7 +24,7 @@ export class StudyComponent implements OnInit {
   listWordofTitle: Word[] = [];
   ListLoad:GhepTu[]=[];
   idTitle: any;
-  currentIndex:number=0;
+  currentIndex:number=-1;
   loadWord() {
     const number = +this.route.snapshot.paramMap.get('id');
     this.idTitle = number;
@@ -68,14 +68,15 @@ TracNghiem(){
       }
     });
     let temp1=new GhepTu(null,"","");
+    ++this.currentIndex;
+    this.selectedWord=this.data[this.currentIndex];
+console.log("current:"+this.currentIndex);
     temp1["id"]=3;
     temp1["definiton"]=this.selectedWord["definition"];
     temp1["name"]=this.selectedWord["imageWord"];
     this.ListLoad.push(temp1);
-    ++this.currentIndex;
-    if(this.currentIndex>0){
-      this.selectedWord=this.data[this.currentIndex];
-    }
+    // if(this.currentIndex>=0){
+    // }
     
     console.table(this.listWordofTitle);
     console.table(this.ListLoad);
