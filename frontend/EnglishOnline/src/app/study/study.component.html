@@ -46,11 +46,9 @@
                                         </div>
                                         <div class="ModeControls-actions" style="text-align: center;">
                                             <div class="ModeControls-action">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                                            Open modal
-                                                          </button>
 
-                                                <button class="UIButton UIButton--whiteBorder UIButton--fill" type="button" (click)="TracNghiem();">
+
+                                                <button class="UIButton UIButton--whiteBorder UIButton--fill" type="button" (click)="shuffle(ListLoad);">
                         <span class="UIButton-wrapper">
                           <i class="fa fa-random"></i>
                           <span>  Trộn thẻ</span>
@@ -89,14 +87,17 @@
                 <div class="AssistantMultipleChoiceQuestionPromptView-termOptions">
                     <div class="AssistantMultipleChoiceQuestionPromptView-termOption" *ngFor="let word of ListLoad;let i=index">
                         <div class="AssistantMultipleChoiceQuestionPromptView-keyboardHint">
-                            <div class="UIKeyboardHint is-white"><span class="UIKeyboardHint-text is-white">{{i}}</span>
+                            <div class="UIKeyboardHint is-white"><span class="UIKeyboardHint-text is-white">{{i+1}}</span>
                             </div>
                         </div>
                         <div class="AssistantMultipleChoiceQuestionPromptView-termOptionInner">
                             <div class="FormattedTextWithImage"><span class="FormattedText notranslate TermText lang-vi">{{word.definiton}}</span>
                                 <div class="FormattedTextWithImage-image">
                                     <div class="Image">
-                                        <div class="Image-image" style="background: url(&quot;https://farm6.staticflickr.com/5100/5506171776_8c017483db_m.jpg&quot;) center center / contain no-repeat; height: 64px;"></div>
+                                        <!-- [style.background]="getBackground(word.name)+'center center/contain no-repeat;'" -->
+                                        <div class="Image-image">
+                                            <img src="http://localhost:9059/upload/file/{{word.name}}" style="height: 100%;width: 100%" alt="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -117,27 +118,13 @@
 </div>
 </div>
 </div>
-<!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<div class="popup" id="popup">
+    <div class="popup__content" style="text-align: center;">
 
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                Modal body..
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
+        <h3 class="UIHeading UIHeading--three" style="margin-bottom: 0;margin-left: 0;margin-right: 0;font-weight: 700;font-size: 1.875rem;line-height: 1.266666666666667;"><span>Làm cho tất cả mọi thứ biến mất!</span></h3>
+        <div class="UIDiv MatchModeInstructionsModal-description">
+            <p class="UIParagraph"><span>Kéo các vật phẩm tương ứng chồng lên nhau sẽ khiến chúng biến mất.</span></p>
         </div>
+        <div class="MatchModeInstructionsModal-button" style="margin-top:2.5rem !important;"><button class="UIButton UIButton--hero" type="button" (click)="clickStart();"><span class="UIButton-wrapper"><span>Bắt đầu chơi</span></span></button></div>
     </div>
 </div>

@@ -4,7 +4,8 @@ import { FlashcardService } from '../service/flashcard.service';
 import { Word } from '../model/word';
 import { ActivatedRoute } from '@angular/router';
 import { GhepTu } from '../model/gheptu';
-
+import { DomSanitizer } from '@angular/platform-browser';
+declare var $:any;
 @Component({
   selector: 'app-study',
   templateUrl: './study.component.html',
@@ -13,12 +14,15 @@ import { GhepTu } from '../model/gheptu';
 export class StudyComponent implements OnInit {
   data:any;
   selectedWord=new Word(null, "", "","","","","");
-  constructor(private token:TokenStorageService,private titleService:FlashcardService,private route: ActivatedRoute) {
+  constructor(private _sanitizer: DomSanitizer,private token:TokenStorageService,private titleService:FlashcardService,private route: ActivatedRoute) {
 
    }
 
   ngOnInit() {
     this.loadWord();
+  }
+  getBackground(image) {
+    return this._sanitizer.bypassSecurityTrustStyle(`url(http://localhost:9059/upload/file/${image})`)
   }
   dataTemp: any;
   listWordofTitle: Word[] = [];
@@ -53,7 +57,13 @@ export class StudyComponent implements OnInit {
 TracNghiem(){
   this.ListLoad=[];
   let count=0;
+  ++this.currentIndex;
+  
     this.listWordofTitle.forEach((value,index,array)=>{
+      if(this.currentIndex>=array.length){
+        console.log("THE END");
+        return;
+      }
       let temp=new GhepTu(null,"","");
       let min=0; 
         let max=array.length-1;  
@@ -68,9 +78,9 @@ TracNghiem(){
       }
     });
     let temp1=new GhepTu(null,"","");
-    ++this.currentIndex;
     this.selectedWord=this.data[this.currentIndex];
 console.log("current:"+this.currentIndex);
+    
     temp1["id"]=3;
     temp1["definiton"]=this.selectedWord["definition"];
     temp1["name"]=this.selectedWord["imageWord"];
@@ -86,6 +96,11 @@ console.log("current:"+this.currentIndex);
   checkundefined(): any {
     if (this.selectedWord === undefined) return false;
     return true;
+  }
+  clickStart(){
+     
+    $(".popup").addClass("popup__close");
+    this.TracNghiem();
   }
   shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -105,4 +120,5 @@ console.log("current:"+this.currentIndex);
 
     return array;
   }
+
 }
