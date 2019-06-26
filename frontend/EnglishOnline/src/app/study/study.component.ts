@@ -20,6 +20,10 @@ export class StudyComponent implements OnInit {
 
   ngOnInit() {
     this.loadWord();
+    $(".AssistantMultipleChoiceQuestionPromptView-termOptionInner").click(function() {
+            console.log(this.id);
+  
+          });
   }
   getBackground(image) {
     return this._sanitizer.bypassSecurityTrustStyle(`url(http://localhost:9059/upload/file/${image})`)
@@ -28,6 +32,10 @@ export class StudyComponent implements OnInit {
   listWordofTitle: Word[] = [];
   ListLoad:GhepTu[]=[];
   idTitle: any;
+  lengthList:number;
+  countlengthList:number;
+  countNum:number=0
+  phanTram:number;
   currentIndex:number=-1;
   loadWord() {
     const number = +this.route.snapshot.paramMap.get('id');
@@ -51,6 +59,7 @@ export class StudyComponent implements OnInit {
       });
    
         this.data = this.listWordofTitle;
+        this.lengthList=this.listWordofTitle.length;
           this.selectedWord = this.data[0];
   });
 }
@@ -85,12 +94,15 @@ console.log("current:"+this.currentIndex);
     temp1["definiton"]=this.selectedWord["definition"];
     temp1["name"]=this.selectedWord["imageWord"];
     this.ListLoad.push(temp1);
+    this.countNum++;
+    this.phanTram=(this.countNum/this.listWordofTitle.length)*100;
+    
     // if(this.currentIndex>=0){
     // }
     
-    console.table(this.listWordofTitle);
-    console.table(this.ListLoad);
-    console.table(this.shuffle(this.ListLoad));
+    // console.table(this.listWordofTitle);
+    // console.table(this.ListLoad);
+    // console.table(this.shuffle(this.ListLoad));
   }
 
   checkundefined(): any {
@@ -120,5 +132,49 @@ console.log("current:"+this.currentIndex);
 
     return array;
   }
+  checkTrue(text:any){
+    if(text==this.selectedWord.definition){
+      console.log("true");
+      $("#Question").removeClass("popup_show");
+      $("#TrueAnswer").removeClass("popup__close");
+      $("#WrongAnswer").removeClass("popup__close");
 
+      $("#TrueAnswer").addClass("popup_show");
+      $("#WrongAnswer").addClass("popup__close");
+      $("#Question").addClass("popup__close");
+
+    }
+    else{
+      // $("#TrueAnswer").removeClass("popup_show");
+      // $("#WrongAnswer").removeClass("popup_show");
+      $("#Question").removeClass("popup_show");
+      $("#TrueAnswer").removeClass("popup__close");
+      $("#WrongAnswer").removeClass("popup__close");
+      // $("#Question").removeClass("popup_close");
+      
+      $("#TrueAnswer").addClass("popup__close");
+      $("#WrongAnswer").addClass("popup_show");
+      $("#Question").addClass("popup__close");
+    }
+  }
+  NextWord(){
+    if(this.countNum>=this.lengthList){
+      $("#TrueAnswer").removeClass("popup_show");
+      $("#Question").removeClass("popup__close");
+      $("#TheEnd").removeClass("popup__close");
+      $("#TheEnd").addClass("popup_show");
+      $("#TrueAnswer").addClass("popup__close");
+      $("#WrongAnswer").addClass("popup__close");
+      $("#Question").addClass("popup__close");
+    }
+    this.TracNghiem();
+    $("#TrueAnswer").removeClass("popup_show");
+    $("#WrongAnswer").removeClass("popup_show");
+    $("#Question").removeClass("popup__close");
+    $("#Question").addClass("popup_show");
+    $("#TrueAnswer").addClass("popup__close");
+    $("#WrongAnswer").addClass("popup__close");
+
+
+  }
 }

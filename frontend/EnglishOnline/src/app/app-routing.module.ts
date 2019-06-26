@@ -9,6 +9,7 @@ import { ThienthachComponent } from './thienthach/thienthach.component';
 import { StudyComponent } from './study/study.component';
 import { FlashcardComponent } from './flashcard/flashcard.component';
 import { RegisterComponent } from './register/register.component';
+import { DetailTitleComponent } from './detail-title/detail-title.component';
 
 const routes: Routes = [{
 path:'homepage',
@@ -41,6 +42,10 @@ component:HomepageComponent
 {
   path:'flashcard/:id',
   component:FlashcardComponent
+},
+{
+  path:'detailTitle/:id',
+  component:DetailTitleComponent
 },
 {
 path:'register',

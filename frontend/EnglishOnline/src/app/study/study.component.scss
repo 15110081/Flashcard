@@ -94,3 +94,25 @@
     opacity: 0;
     visibility: hidden;
 }
+
+.popup_close {
+    // color: #55c57a;
+    opacity: 0 !important;
+}
+
+.popup_show {
+    opacity: 1 !important;
+    z-index: 101;
+}
+
+.AssistantFeedbackHeading-separator {
+    margin-top: 1.5rem;
+}
+
+.UIHorizontalRule {
+    border: none;
+    border-bottom: 0.0625rem solid #f0f0f0;
+    height: 0;
+    margin-bottom: 0;
+    overflow: visible;
+}

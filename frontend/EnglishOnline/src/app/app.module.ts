@@ -22,6 +22,7 @@ import { ThienthachComponent } from './thienthach/thienthach.component';
 import { StudyComponent } from './study/study.component';
 import { FlashcardComponent } from './flashcard/flashcard.component';
 import { RegisterComponent } from './register/register.component';
+import { DetailTitleComponent } from './detail-title/detail-title.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RegisterComponent } from './register/register.component';
     ThienthachComponent,
     StudyComponent,
     FlashcardComponent,
-    RegisterComponent  
+    RegisterComponent,
+    DetailTitleComponent  
   ],
   imports: [
     BrowserModule,
