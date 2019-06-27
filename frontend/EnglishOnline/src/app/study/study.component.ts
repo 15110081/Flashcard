@@ -53,7 +53,7 @@ export class StudyComponent implements OnInit {
         word["note"] = element["note"];
         word["phonetic"] = element["phonetic"];
         word["vocabulary"] = element["vocabulary"];
-        word["typeWord"] = element["typeWord"];
+        word["typeword"] = element["typeword"];
         word["imageWord"] = element["imageWord"];
         this.listWordofTitle.push(word);
       });
