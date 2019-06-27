@@ -33,4 +33,15 @@ export class FlashcardService {
   getTitleWord(id:number,auth_token:any):Observable<RestResponse>{
     return this.http.get<RestResponse>(`http://localhost:9059/titleHAL/${id}/words`,{ headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`)});
   }
+  getCourseTop6(auth_token: any): Observable<any> {
+    return this.http.get("http://localhost:9059/titleHAL?page=0&size=6&sort=createdDatetime,desc", { headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`) });
+  }
+  getCountWordofTitle(auth_token: any,id:number): Observable<any> {
+   return this.http.get(`http://localhost:9059/titleApiv1/countWordofTitle/${id}`, { headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`) });
+  }
+
+  getTitleInfo(auth_token: any,id:number): Observable<any>{
+    return this.http.get(`http://localhost:9059/titleHAL/${id}`, { headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`) });
+  }
+
 }
