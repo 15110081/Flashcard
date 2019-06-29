@@ -23,6 +23,7 @@ import { StudyComponent } from './study/study.component';
 import { FlashcardComponent } from './flashcard/flashcard.component';
 import { RegisterComponent } from './register/register.component';
 import { DetailTitleComponent } from './detail-title/detail-title.component';
+import { WriteComponent } from './write/write.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DetailTitleComponent } from './detail-title/detail-title.component';
     StudyComponent,
     FlashcardComponent,
     RegisterComponent,
-    DetailTitleComponent  
+    DetailTitleComponent,
+    WriteComponent  
   ],
   imports: [
     BrowserModule,

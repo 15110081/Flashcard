@@ -10,6 +10,7 @@ import { StudyComponent } from './study/study.component';
 import { FlashcardComponent } from './flashcard/flashcard.component';
 import { RegisterComponent } from './register/register.component';
 import { DetailTitleComponent } from './detail-title/detail-title.component';
+import { WriteComponent } from './write/write.component';
 
 const routes: Routes = [{
 path:'homepage',
@@ -51,6 +52,10 @@ component:HomepageComponent
 path:'register',
 component:RegisterComponent
 },
+{
+  path:'write/:id',
+  component:WriteComponent
+  },
 { 
   path: '',
   redirectTo: '/login',
