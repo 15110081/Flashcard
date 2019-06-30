@@ -29,13 +29,13 @@
                     Đăng ký thành viên
                 </h3>
                 <div class="wrap-input100 validate-input" data-validate="Your Name">
-                    <input class="input100" type="text" placeholder="Tên người dùng" name="name" [(ngModel)]="form.name" #name="ngModel" required>
+                    <input class="input100" type="text" placeholder="Họ và tên người dùng" name="name" [(ngModel)]="form.name" #name="ngModel" required>
                     <div *ngIf="f.submitted && username.invalid">
                         <div *ngIf="username.errors.required">Username is required</div>
                     </div>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="Enter UserName">
-                    <input name="name" class="input100" type="text" placeholder="UserName" [(ngModel)]="form.username" #username="ngModel" required>
+                    <input name="name" class="input100" type="text" placeholder="Tên đăng nhập" [(ngModel)]="form.username" #username="ngModel" required>
                     <div *ngIf="f.submitted && name.invalid">
                         <div *ngIf="name.errors.required">Name is required</div>
                     </div>
@@ -66,7 +66,7 @@
 
                 <div class="text-center p-t-90">
                     <span>Đã có tài khoản?</span>
-                    <a class="txt1" href="login.html">
+                    <a class="txt1" routerLink="/login">
                               Đăng nhập
                           </a>
                 </div>

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService,private router: Router) { 
-    this.isLoggedIn = false;
+    // this.isLoggedIn = false;
   }
   
   onSubmit() {
