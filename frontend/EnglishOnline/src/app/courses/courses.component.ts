@@ -36,6 +36,9 @@ export class CoursesComponent implements OnInit {
       this.dateTemp.forEach(element => {
         let title = new Title(null, "", "", "", "","","");
         temp = element["_links"]["self"]["href"].match(patt1);
+        this.http.get(`http://localhost:9059/titleApiv1/countWordofTitle/`+temp.toString().slice(1)).forEach((value)=>{
+          title["size"]=value["size"];
+        });
         title["id"] = temp.toString().slice(1);
         title["name"] = element["name"];
         title["imageTitle"] = element["imageTitle"];
@@ -53,15 +56,18 @@ export class CoursesComponent implements OnInit {
       this.titleService.getCourseTop12(this.token.getToken()).subscribe(res=>{
       var patt1 =/\/[1-9]+.*/g;
       this.dateTemp = res["_embedded"]["title"];
-      this.firstPage=res["_links"]["first"]["href"];
-      this.lastPage=res["_links"]["last"]["href"];
+      
+     
+      
       this.page["size"]=res["page"]["size"];
       this.page["totalElements"]=res["page"]["totalElements"];
       this.page["totalPages"]=res["page"]["totalPages"];
       this.page["number"]=res["page"]["number"];
       this.numbers = Array(parseInt(this.page["totalPages"],10)).fill(0).map((x,i)=>i);
 
-    
+      if(parseInt(this.page.totalPages)>1)
+      this.lastPage=res["_links"]["last"]["href"];
+      // this.firstPage=res["_links"]["first"]["href"];
       var temp;
       this.dateTemp.forEach(element => {
         let title = new Title(null, "", "", "", "","","");

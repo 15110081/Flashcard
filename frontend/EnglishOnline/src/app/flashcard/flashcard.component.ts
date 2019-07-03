@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Word } from '../model/word';
 import { GhepTu } from '../model/gheptu';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
+import { Location } from '@angular/common';
 declare var $: any;
 @Component({
   selector: 'app-flashcard',
@@ -16,9 +17,10 @@ export class FlashcardComponent implements OnInit {
   hotkeyRight:Hotkey | Hotkey[];
   currentIndex:number=0;
   data:any;
+  count:number=1;
   currentID:number;
   selectedWord=new Word(null, "", "","","","","");
-  constructor( private hotkeysService: HotkeysService,private titleService: FlashcardService, private token: TokenStorageService, private route: ActivatedRoute) { 
+  constructor(private location:Location, private hotkeysService: HotkeysService,private titleService: FlashcardService, private token: TokenStorageService, private route: ActivatedRoute) { 
     
     this.hotkeyLeft = hotkeysService.add(
       new Hotkey("left", this.clickLeft)
@@ -106,5 +108,8 @@ export class FlashcardComponent implements OnInit {
   checkundefined(): any {
     if (this.selectedWord === undefined) return false;
     return true;
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

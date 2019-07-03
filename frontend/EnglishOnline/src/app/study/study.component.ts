@@ -5,6 +5,8 @@ import { Word } from '../model/word';
 import { ActivatedRoute } from '@angular/router';
 import { GhepTu } from '../model/gheptu';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Result } from '../model/result';
+import { Location } from '@angular/common';
 declare var $:any;
 @Component({
   selector: 'app-study',
@@ -14,7 +16,7 @@ declare var $:any;
 export class StudyComponent implements OnInit {
   data:any;
   selectedWord=new Word(null, "", "","","","","");
-  constructor(private _sanitizer: DomSanitizer,private token:TokenStorageService,private titleService:FlashcardService,private route: ActivatedRoute) {
+  constructor(private _sanitizer: DomSanitizer,private location:Location,private token:TokenStorageService,private titleService:FlashcardService,private route: ActivatedRoute) {
 
    }
 
@@ -36,6 +38,7 @@ export class StudyComponent implements OnInit {
   countlengthList:number;
   countNum:number=0
   phanTram:number;
+  point:number=0;
   currentIndex:number=-1;
   loadWord() {
     const number = +this.route.snapshot.paramMap.get('id');
@@ -142,9 +145,10 @@ console.log("current:"+this.currentIndex);
       $("#TrueAnswer").addClass("popup_show");
       $("#WrongAnswer").addClass("popup__close");
       $("#Question").addClass("popup__close");
-
+      this.point+=100;
     }
     else{
+      this.point-=50;
       // $("#TrueAnswer").removeClass("popup_show");
       // $("#WrongAnswer").removeClass("popup_show");
       $("#Question").removeClass("popup_show");
@@ -166,6 +170,15 @@ console.log("current:"+this.currentIndex);
       $("#TrueAnswer").addClass("popup__close");
       $("#WrongAnswer").addClass("popup__close");
       $("#Question").addClass("popup__close");
+      let result=new Result(null,"","","","","");
+      result.result=this.point.toString();
+      result.title_id=this.route.snapshot.paramMap.get('id');
+      result.type_test="study";
+      result.username=this.token.getUsername();
+      console.log(result);
+      this.titleService.postResult(this.token.getToken(),result).subscribe(res=>{
+        console.log('done');
+      });
     }
     this.TracNghiem();
     $("#TrueAnswer").removeClass("popup_show");
@@ -176,5 +189,8 @@ console.log("current:"+this.currentIndex);
     $("#WrongAnswer").addClass("popup__close");
 
 
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

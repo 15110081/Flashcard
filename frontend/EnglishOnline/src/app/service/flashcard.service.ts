@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RestResponse } from '../model/restresponse';
 import { Word } from '../model/word';
+import { Result } from '../model/result';
 @Injectable({
   providedIn: 'root'
 })
@@ -54,6 +55,10 @@ export class FlashcardService {
 }
 getTitleIDHAL(auth_token: any,id:any): Observable<any> {
   return this.http.get(`http://localhost:9059/titleHAL?page=${id}&size=12&sort=name,asc`,
+   { headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`) });
+}
+postResult(auth_token: any,result:Result): Observable<any>{
+  return this.http.post(`http://localhost:9059/resultHAL`,result,
    { headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`) });
 }
 }

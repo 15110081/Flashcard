@@ -20,7 +20,7 @@
                             <div class="ModeControls">
                                 <aside class="ModeControls-sidebar">
                                     <div class="ModeControls-back">
-                                        <a class="UILink" href="detail.html">
+                                        <a class="UILink" href="javascript:void(0);" (click)="goBack()">
                                             <b><i class="fa fa-angle-left" style="color: #39cfca; font-size: 16px"></i>   Trở về</b>
                                         </a>
                                     </div>
@@ -31,31 +31,14 @@
                                         <div class="ModeControls-progress">
                                             <div class="ModeControls-progressSection">
                                                 <div class="CardsModeControls-progress">
-                                                    <div class="CardsModeControls-progressBar">
-                                                        <div aria-valuemax="22" aria-valuemin="0" aria-valuenow="1" class="UIProgressBar" role="progressbar"><span class="UIProgressBar-fill" style="width: 4.54545%;"></span>
-                                                        </div>
-                                                    </div>
                                                     <div class="CardsModeControls-progressLabel">
                                                         <div class="CardsModeControls-progressLabelText">TIẾN ĐỘ</div>
-                                                        <div class="CardsModeControls-progressValue">1/22</div>
+                                                        <div class="CardsModeControls-progressValue">{{currentIndex+1}}/{{this.data.length}}</div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="ModeControls-actions" style="text-align: center;">
-                                            <div class="ModeControls-action" style="margin-bottom: 10px">
-                                                <button class="UIButton UIButton--whiteBorder UIButton--fill" type="button">
-                          <span class="UIButton-wrapper">
-                            <i class="fa fa-play"></i>
-                            <span> Bắt đầu</span>
-                          </span>
-                        </button>
-                                            </div>
-                                            <div class="ModeControls-action">
-                                                <button class="UIButton UIButton--whiteBorder UIButton--fill" type="button"><span class="UIButton-wrapper"><i class="fa fa-random"></i><span>  Trộn thẻ</span></span>
-                        </button>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </aside>
                             </div>
@@ -101,10 +84,11 @@
                             <div class="CardsList-navControl previousButton">
                                 <span class="UIIconButton">
                                             <button class="UIButton UIButton--white" disabled="" title="Xem thẻ trước đó" type="button">
-                                              <span class="UIButton-wrapper" style="color:#c0cace;">
+                                              <span class="UIButton-wrapper" style="color:#3ccfcf;">
                                                 <span class="UIIcon ">
                                                   <i class="fa fa-caret-left" style="font-size: 50px;"></i>
                                                 </span>
+                                <!-- c0cace -->
                                 </span>
                                 </button>
                                 </span>

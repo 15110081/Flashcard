@@ -20,7 +20,7 @@
                             <div class="ModeControls">
                                 <aside class="ModeControls-sidebar">
                                     <div class="ModeControls-back">
-                                        <a class="UILink" href="detail.html">
+                                        <a class="UILink" href="javascript:void(0);" (click)="goBack()">
                                             <b><i
                           class="fa fa-angle-left"
                           style="color: #39cfca; font-size: 16px"
@@ -74,26 +74,13 @@
                               {{countNum}}/{{lengthList}}
                             </div>
                           </div>
+                          <div class="ModeControls-modeName" style="font-size:14px;color:#39cfca;">
+                            Điểm:{{point}}
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div
-                      class="ModeControls-actions"
-                      style="text-align: center;"
-                    >
-                      <div class="ModeControls-action">
-                        <button
-                          class="UIButton UIButton--whiteBorder UIButton--fill"
-                          type="button"
-                          (click)="shuffle(ListLoad)"
-                        >
-                          <span class="UIButton-wrapper">
-                            <i class="fa fa-random"></i>
-                            <span> Trộn thẻ</span>
-                          </span>
-                        </button>
-                      </div>
-                    </div>
+                   
                   </div>
                 </aside>
               </div>
@@ -130,7 +117,7 @@
                                   id="{{ selectedWord.vocabulary }}"
                                   >{{ selectedWord.definition }}</span
                                 >
-                                <img src="http://localhost:9059/upload/file/{{ selectedWord.imageWord }}" alt="">
+                                <img src="http://localhost:9059/upload/file/{{ selectedWord.imageWord }}" style="width: 100%;" alt="">
                               </div>
                             </div>
                           </div>
@@ -273,7 +260,7 @@
                                             ></path></svg>
                                           <span style="margin-left:10px;color:#23b26d;">Kết thúc việc học, bạn đã sẵn sàng cho thử thách mới !!!</span>
                                           </span>
-                                <button style="margin-top:1rem;" class="UIButton UIButton--fill UIButton--hero" type="button" (click)="NextWord();"><span class="UIButton-wrapper" style="cursor:pointer;"><span>Chọn thử thách mới</span></span></button>
+                                <button style="margin-top:1rem;" class="UIButton UIButton--fill UIButton--hero" type="button" (click)="goBack();"><span class="UIButton-wrapper" style="cursor:pointer;"><span>Chọn thử thách mới</span></span></button>
                              
                                     </div>
                                   </div>

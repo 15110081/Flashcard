@@ -3,6 +3,8 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { FlashcardService } from '../service/flashcard.service';
 import { ActivatedRoute } from '@angular/router';
 import { Word } from '../model/word';
+import { Location } from '@angular/common';
+import { Result } from '../model/result';
 declare var $:any;
 @Component({
   selector: 'app-write',
@@ -20,7 +22,7 @@ export class WriteComponent implements OnInit {
   phanTram:number;
   currentIndex:number=0;
   selectedWord=new Word(null, "", "","","","","");
-  constructor(private token:TokenStorageService, private titleService:FlashcardService,private route: ActivatedRoute) { }
+  constructor(private location:Location,private token:TokenStorageService, private titleService:FlashcardService,private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.loadWord();
@@ -71,11 +73,12 @@ checkTrue(){
     $("#TrueAnswer").addClass("popup_show");
     $("#WrongAnswer").addClass("popup__close");
     $("#Question").addClass("popup__close");
-
+    this.point+=100;
   }
   else{
     // $("#TrueAnswer").removeClass("popup_show");
     // $("#WrongAnswer").removeClass("popup_show");
+    this.point-=50;
     $("#Question").removeClass("popup_show");
     $("#TrueAnswer").removeClass("popup__close");
     $("#WrongAnswer").removeClass("popup__close");
@@ -86,6 +89,7 @@ checkTrue(){
     $("#Question").addClass("popup__close");
   }
 }
+point:number=0;
 NextWord(){
   this.NextWordWrite();
 
@@ -97,6 +101,14 @@ NextWord(){
     $("#TrueAnswer").addClass("popup__close");
     $("#WrongAnswer").addClass("popup__close");
     $("#Question").addClass("popup__close");
+    let result=new Result(null,"","","","","");
+      result.result=this.point.toString();
+      result.title_id=this.route.snapshot.paramMap.get('id');
+      result.type_test="write";
+      result.username=this.token.getUsername();
+      this.titleService.postResult(this.token.getToken(),result).subscribe(res=>{
+        console.log('done');
+      });
   }
   else{
     $("#TrueAnswer").removeClass("popup_show");
@@ -109,5 +121,8 @@ NextWord(){
   }
 
 
+}
+goBack(): void {
+  this.location.back();
 }
 }
