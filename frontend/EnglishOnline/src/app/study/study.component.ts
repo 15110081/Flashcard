@@ -22,6 +22,7 @@ export class StudyComponent implements OnInit {
 
   ngOnInit() {
     this.loadWord();
+    this.getDataResult();
     $(".AssistantMultipleChoiceQuestionPromptView-termOptionInner").click(function() {
             console.log(this.id);
   
@@ -33,6 +34,7 @@ export class StudyComponent implements OnInit {
   dataTemp: any;
   listWordofTitle: Word[] = [];
   ListLoad:GhepTu[]=[];
+  result_v2=new Result(null,"","","","","");
   idTitle: any;
   lengthList:number;
   countlengthList:number;
@@ -40,6 +42,8 @@ export class StudyComponent implements OnInit {
   phanTram:number;
   point:number=0;
   currentIndex:number=-1;
+  dateNow=new Date().toLocaleDateString();
+ 
   loadWord() {
     const number = +this.route.snapshot.paramMap.get('id');
     this.idTitle = number;
@@ -73,6 +77,7 @@ TracNghiem(){
   
     this.listWordofTitle.forEach((value,index,array)=>{
       if(this.currentIndex>=array.length){
+       
         console.log("THE END");
         return;
       }
@@ -84,7 +89,7 @@ TracNghiem(){
       if(count<=2 && this.currentIndex!==random ){
         count++;
         temp["id"]=index;
-        temp["definiton"]=array[random].definition;
+        temp["definition"]=array[random].definition;
         temp["name"]=array[random].imageWord;
         this.ListLoad.push(temp);
       }
@@ -94,7 +99,7 @@ TracNghiem(){
 console.log("current:"+this.currentIndex);
     
     temp1["id"]=3;
-    temp1["definiton"]=this.selectedWord["definition"];
+    temp1["definition"]=this.selectedWord["definition"];
     temp1["name"]=this.selectedWord["imageWord"];
     this.ListLoad.push(temp1);
     this.countNum++;
@@ -161,6 +166,30 @@ console.log("current:"+this.currentIndex);
       $("#Question").addClass("popup__close");
     }
   }
+  listResultData:Result[]=[];
+  resultData1:any;
+  dataTemp1:any
+  getDataResult(){
+    this.titleService.getResult(this.token.getToken(),"study",this.route.snapshot.paramMap.get('id')).subscribe(res=>{
+
+      var patt1 = /\/[1-9]+.*/g;
+       this.dataTemp1 = res["_embedded"]["result"];
+      var temp;
+      this.dataTemp1.forEach((element) => {
+        let resultData = new Result(null, "", "", "", "", "");
+        temp = element["_links"]["self"]["href"].match(patt1);
+        resultData["id"] = temp.toString().slice(1);
+        resultData["result"] = element["result"];
+        resultData["username"] = element["username"];
+        resultData["typeTest"] = element["typeTest"];
+        resultData["titleId"] = element["titleId"];
+        resultData["createdDatetime"] = element["createdDatetime"].toString().slice(0,10);
+        this.listResultData.push(resultData);
+      });
+      this.resultData1=this.listResultData;
+      console.table(this.listResultData);
+    });
+  }
   NextWord(){
     if(this.countNum>=this.lengthList){
       $("#TrueAnswer").removeClass("popup_show");
@@ -170,11 +199,14 @@ console.log("current:"+this.currentIndex);
       $("#TrueAnswer").addClass("popup__close");
       $("#WrongAnswer").addClass("popup__close");
       $("#Question").addClass("popup__close");
+     
+      
       let result=new Result(null,"","","","","");
       result.result=this.point.toString();
-      result.title_id=this.route.snapshot.paramMap.get('id');
-      result.type_test="study";
+      result.titleId=this.route.snapshot.paramMap.get('id').toString();
+      result.typeTest="study";
       result.username=this.token.getUsername();
+     
       console.log(result);
       this.titleService.postResult(this.token.getToken(),result).subscribe(res=>{
         console.log('done');

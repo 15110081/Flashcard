@@ -61,4 +61,8 @@ postResult(auth_token: any,result:Result): Observable<any>{
   return this.http.post(`http://localhost:9059/resultHAL`,result,
    { headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`) });
 }
+getResult(auth_token:any,typeTest:string,titleId:string){
+  return this.http.get(`http://localhost:9059/resultHAL/search/findByTypeTestContainingAndTitleIdContaining?query=${typeTest}&query1=${titleId}`,{ headers: new HttpHeaders().append('Authorization', `Bearer ${auth_token}`) });
+}
+
 }

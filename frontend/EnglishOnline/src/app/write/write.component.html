@@ -117,7 +117,7 @@
                                   id="{{ selectedWord.vocabulary }}"
                                   >{{ selectedWord.definition }}</span
                                 >
-                                <img src="http://localhost:9059/upload/file/{{ selectedWord.imageWord }}" style="width: 100%;" alt="">
+                                <img src="http://localhost:9059/upload/file/{{ selectedWord.imageWord }}" style="width: 100%;height:350px;" alt="">
                               </div>
                             </div>
                           </div>
@@ -192,6 +192,7 @@
                                     font-family: Lucida Grande,Arial,sans-serif !important;">{{ selectedWord.definition }} </div>
                                     <div style="margin-top: 1rem;">{{ selectedWord.phonetic }}}</div>
                                     <img style="width: 200px;" src="http://localhost:9059/upload/file/{{selectedWord.imageWord}}" alt="">
+
                                     <button style="margin-top:1rem;" class="UIButton UIButton--fill UIButton--hero" type="button" (click)="NextWord();"><span class="UIButton-wrapper" style="cursor:pointer;"><span>Nhấn vào đây để tiếp tục</span></span></button>
                                  
                                         </div>
@@ -258,8 +259,33 @@
                                               fill="#FFF"
                                               d="M46.504 38.037C43.996 37.66 38.688 37 31.998 37c-6.688 0-11.993.66-14.503 1.037-1.479.221-1.568.76-1.466 1.52.062.451.156 1 .302 1.588.162.652.291.824 1.447.836 2.221.027 26.222.027 28.444 0 1.156-.012 1.281-.184 1.445-.836.145-.588.242-1.137.301-1.588.106-.76.012-1.299-1.464-1.52z"
                                             ></path></svg>
+                                            
                                           <span style="margin-left:10px;color:#23b26d;">Kết thúc việc học, bạn đã sẵn sàng cho thử thách mới !!!</span>
                                           </span>
+                                          <div class="table-responsive">
+                                            <table class="table" style="margin-bottom: 0">
+                                              <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>User Name</th>
+                                                    <th>Point</th>
+                                                    <th>Date Time</th>
+                                                </tr>
+                                            </thead>
+                                              <tr class="table-success">
+                                                <th scope="row">1</th>
+                                                <td>{{token.getUsername()}}</td>
+                                                <td>{{point}}</td>
+                                                <td>{{dateNow}}</td>
+                                            </tr>
+                                         <tr *ngFor="let dr of resultData1;let i=index ">
+                                              <th scope="row">{{i+2}}</th>
+                                              <td>{{dr.username}}</td>
+                                              <td>{{dr.result}}</td>
+                                              <td>{{dr.createdDatetime}}</td>
+                                          </tr> 
+                                            </table>
+                                        </div>
                                 <button style="margin-top:1rem;" class="UIButton UIButton--fill UIButton--hero" type="button" (click)="goBack();"><span class="UIButton-wrapper" style="cursor:pointer;"><span>Chọn thử thách mới</span></span></button>
                              
                                     </div>

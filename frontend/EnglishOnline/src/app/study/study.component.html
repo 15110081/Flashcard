@@ -128,7 +128,7 @@
                           >
                             <div
                               class="AssistantMultipleChoiceQuestionPromptView-termOption"
-                              (click)="checkTrue(word.definiton)"
+                              (click)="checkTrue(word.definition)"
                               *ngFor="let word of ListLoad; let i = index"
                             >
                               <div
@@ -146,7 +146,7 @@
                                 <div class="FormattedTextWithImage">
                                   <span
                                     class="FormattedText notranslate TermText lang-vi"
-                                    >{{ word.definiton }}</span
+                                    >{{ word.definition }}</span
                                   >
                                   <div class="FormattedTextWithImage-image">
                                     <div class="Image">
@@ -290,6 +290,33 @@
                                             ></path></svg>
                                           <span style="margin-left:10px;color:#23b26d;">Kết thúc việc học, bạn đã sẵn sàng cho thử thách mới !!!</span>
                                           </span>
+                                          <div class="table-responsive">
+                                            <table class="table" style="margin-bottom: 0">
+                                              <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>User Name</th>
+                                                    <th>Point</th>
+                                                    <th>Date Time</th>
+                                                </tr>
+                                            </thead>
+                                              <tr class="table-success">
+                                                <th scope="row">1</th>
+                                                <td>{{token.getUsername()}}</td>
+                                                <td>{{point}}</td>
+                                                <td>{{dateNow}}</td>
+                                            </tr>
+                                            <tr *ngFor="let dr of resultData1;let i=index ">
+                                              <th scope="row">{{i+2}}</th>
+                                              <td>{{dr.username}}</td>
+                                              <td>{{dr.result}}</td>
+                                              <td>{{dr.createdDatetime}}</td>
+                                          </tr>
+                                        
+                                    
+                               
+                                            </table>
+                                        </div>
                                 <button style="margin-top:1rem;" class="UIButton UIButton--fill UIButton--hero" type="button" (click)="goBack();"><span class="UIButton-wrapper" style="cursor:pointer;"><span>Chọn thử thách mới</span></span></button>
                              
                                     </div>

@@ -1,49 +1,57 @@
-<div class="containerlogin">
-    <app-header></app-header>
-    <div class="wrap-login100" style="margin-top: 100px">
-        <form class="login100-form validate-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-            <h3 class="login100-form-title p-b-34 p-t-27" style="text-align: center;margin-bottom: 20px">
-                Đăng nhập
-            </h3>
+<ng-container *ngIf="isLoggedIn;else login">
+    <!-- <app-homepage></app-homepage> -->
+    <!-- <a routerLink="/homepage" routerLinkActive="active">Heroes</a> -->
+</ng-container>
+<ng-template #login>
+    <div class="containerlogin">
+        <app-header></app-header>
+        <div class="wrap-login100" style="margin-top: 100px">
+            <form class="login100-form validate-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <h3 class="login100-form-title p-b-34 p-t-27" style="text-align: center;margin-bottom: 20px">
+                    Đăng nhập
+                </h3>
 
-            <div class="wrap-input100 validate-input" data-validate="Enter username">
-                <input class="input100" placeholder="Tên người dùng" type="text" id="username" name="username" [(ngModel)]="form.username" #username="ngModel" required />
-                <span class="focus-input100" data-placeholder=""></span>
-            </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter username">
+                    <input class="input100" placeholder="Tên người dùng" type="text" id="username" name="username" [(ngModel)]="form.username" #username="ngModel" required />
+                    <span class="focus-input100" data-placeholder=""></span>
+                </div>
 
-            <div class="wrap-input100 validate-input" data-validate="Enter password">
-                <input class="input100" placeholder="Mật khẩu" type="password" id="password" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="6" />
-                <span class="focus-input100" data-placeholder=""></span>
-            </div>
-            <div *ngIf="f.submitted && username.invalid">
-                <div *ngIf="username.errors.required">
-                    Username is required
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input class="input100" placeholder="Mật khẩu" type="password" id="password" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="6" />
+                    <span class="focus-input100" data-placeholder=""></span>
                 </div>
-            </div>
-            <div *ngIf="f.submitted && password.invalid">
-                <div *ngIf="password.errors.required">
-                    Password is required
+                <div *ngIf="f.submitted && username.invalid">
+                    <div *ngIf="username.errors.required">
+                        Username is required
+                    </div>
                 </div>
-                <div *ngIf="password.errors.minlength">
-                    Password must be at least 6 characters
+                <div *ngIf="f.submitted && password.invalid">
+                    <div *ngIf="password.errors.required">
+                        Password is required
+                    </div>
+                    <div *ngIf="password.errors.minlength">
+                        Password must be at least 6 characters
+                    </div>
                 </div>
-            </div>
-            <div class="container-login100-form-btn">
-                <button class="button-login" (keyup.enter)="onSubmit()">
-          Đăng nhập
-        </button>
-            </div>
+                <div style="color:red;">{{errorMessage}}
+                </div>
+                <div class="container-login100-form-btn">
+                    <button class="button-login" (keyup.enter)="onSubmit()">
+              Đăng nhập
+            </button>
+                </div>
 
-            <div class="text-center p-t-90" style="padding: 14px 20px;background-color:red;">
-                <a class="txt1" routerLink="/register" style="color: white;">
-          Đăng ký
-        </a>
-            </div>
-        </form>
+                <div class="text-center p-t-90" style="padding: 14px 20px;background-color:red;">
+                    <a class="txt1" routerLink="/register" style="color: white;">
+              Đăng ký
+            </a>
+                </div>
+            </form>
+        </div>
+        <!-- ####################### Start Scroll to Top Area ####################### -->
+        <div id="back-top">
+            <a title="Go to Top" href="#"></a>
+        </div>
+        <!-- ####################### End Scroll to Top Area ####################### -->
     </div>
-    <!-- ####################### Start Scroll to Top Area ####################### -->
-    <div id="back-top">
-        <a title="Go to Top" href="#"></a>
-    </div>
-    <!-- ####################### End Scroll to Top Area ####################### -->
-</div>
+</ng-template>

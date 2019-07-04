@@ -17,13 +17,9 @@
         </div>
         <div style="flex:3;left: 10px;
             position: relative;">
-            <div style="font-size:12px;font-weight: 600;
-                text-transform: uppercase;
-                font-size: 0.75rem;
-                letter-spacing: 0.0625rem;
-                line-height: 1.333333333333333;">Thời gian</div>
-            <div id="timer" style="font-size:30px;color: #4257b2;
-                transition: all 120ms cubic-bezier(0.47,0,0.745,0.715);">36.047,6</div>
+
+            <div style="font-size:30px;color: #4257b2;
+                transition: all 120ms cubic-bezier(0.47,0,0.745,0.715);">Điểm:{{point}}</div>
             <!-- <div style="font-size:30px;color: #4257b2;
                 transition: all 120ms cubic-bezier(0.47,0,0.745,0.715);">
               
@@ -31,23 +27,25 @@
             </div> -->
         </div>
 
-        <button id="start">start</button>
-        <button id="stop">stop</button>
-        <button id="reset">reset</button>
-        <button data-rg="grid-1">Click me!</button>
+
     </div>
     <div style="height: 100%;
     position: relative;width:79%;float:right;    top: 24px;">
         <div class="grid" id="grid-1">
             <ng-container *ngFor="let list of ListLoad;let i = index">
 
-                <div class="item" id="{{i}}front" *ngIf="list.definiton===''; else haveImage" (click)="clickChoose(i,'front')">{{list.name}}</div>
+                <div class="item" id="{{i}}front" *ngIf="list.definition===''; else haveImage" (click)="clickChoose(i,'front')">{{list.name}}</div>
                 <input type="text" id="{{i}}" value={{list.id}} hidden>
                 <ng-template #haveImage>
                     <div class="parallax-container">
-                        <div style="" class="item parallax1" [style.background-image]="getBackground(list.name)" id="{{i}}back" (click)="clickChoose(i,'back')">
-                            <span class="fontColor">{{list.definiton}}</span>
+                        <div style=" background-color: rgb(0, 0, 0);
+                        background-color: rgba(0, 0, 0, 1);
+                        -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);">
+                            <div style="opacity: 0.6;" class="item parallax1" [style.background-image]="getBackground(list.name)" id="{{i}}back" (click)="clickChoose(i,'back')">
+                                <span class="fontColor">{{list.definition}}</span>
+                            </div>
                         </div>
+
                     </div>
                     <input type="text" value={{list.id}} id={{i}} hidden>
                 </ng-template>
@@ -65,6 +63,32 @@
             <div id="12" class="rg_item">Item 12</div> -->
 
         </div>
+        <div class="table-responsive" style="display: none;">
+            <table class="table" style="margin-bottom: 0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>User Name</th>
+                        <th>Point</th>
+                        <th>Date Time</th>
+                    </tr>
+                </thead>
+                <tr class="table-success">
+                    <th scope="row">1</th>
+                    <td>{{token.getUsername()}}</td>
+                    <td>{{point}}</td>
+                    <td>{{dateNow}}</td>
+                </tr>
+                <tr *ngFor="let dr of resultData1;let i=index ">
+                    <th scope="row">{{i+2}}</th>
+                    <td>{{dr.username}}</td>
+                    <td>{{dr.result}}</td>
+                    <td>{{dr.createdDatetime}}</td>
+                </tr>
 
+
+
+            </table>
+        </div>
     </div>
 </div>

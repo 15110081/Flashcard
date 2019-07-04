@@ -116,3 +116,16 @@
     margin-bottom: 0;
     overflow: visible;
 }
+
+tbody {
+    display: block;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+thead,
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}

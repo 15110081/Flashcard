@@ -22,13 +22,16 @@ export class WriteComponent implements OnInit {
   phanTram:number;
   currentIndex:number=0;
   selectedWord=new Word(null, "", "","","","","");
-  constructor(private location:Location,private token:TokenStorageService, private titleService:FlashcardService,private route: ActivatedRoute) { }
+  constructor(private location:Location,private token:TokenStorageService, private titleService:FlashcardService,private route: ActivatedRoute) {
+    
+   }
 
   ngOnInit() {
     this.loadWord();
+    this.getDataResult();
   }
   NextWordWrite(){
-    ++this.currentIndex;
+    if(this.currentIndex<this.listWordofTitle.length)++this.currentIndex;
     this.selectedWord = this.data[this.currentIndex];
     this.countNum++;
     this.phanTram=(this.countNum/this.listWordofTitle.length)*100;
@@ -89,7 +92,32 @@ checkTrue(){
     $("#Question").addClass("popup__close");
   }
 }
+listResultData:Result[]=[];
+  resultData1:any;
+  dateNow=new Date().toLocaleDateString();
+getDataResult(){
+  this.titleService.getResult(this.token.getToken(),"write",this.route.snapshot.paramMap.get('id')).subscribe(res=>{
+
+    var patt1 = /\/[1-9]+.*/g;
+     let dataTemp1 = res["_embedded"]["result"];
+    var temp;
+    dataTemp1.forEach((element) => {
+      let resultData = new Result(null, "", "", "", "", "");
+      temp = element["_links"]["self"]["href"].match(patt1);
+      resultData["id"] = temp.toString().slice(1);
+      resultData["result"] = element["result"];
+      resultData["username"] = element["username"];
+      resultData["typeTest"] = element["typeTest"];
+      resultData["titleId"] = element["titleId"];
+      resultData["createdDatetime"] = element["createdDatetime"].toString().slice(0,10);
+      this.listResultData.push(resultData);
+    });
+    this.resultData1=this.listResultData;
+    console.table(this.resultData1);
+  });
+}
 point:number=0;
+
 NextWord(){
   this.NextWordWrite();
 
@@ -101,10 +129,11 @@ NextWord(){
     $("#TrueAnswer").addClass("popup__close");
     $("#WrongAnswer").addClass("popup__close");
     $("#Question").addClass("popup__close");
-    let result=new Result(null,"","","","","");
+      let result=new Result(null,"","","","","");
+
       result.result=this.point.toString();
-      result.title_id=this.route.snapshot.paramMap.get('id');
-      result.type_test="write";
+      result.titleId=this.route.snapshot.paramMap.get('id').toString();
+      result.typeTest="write";
       result.username=this.token.getUsername();
       this.titleService.postResult(this.token.getToken(),result).subscribe(res=>{
         console.log('done');

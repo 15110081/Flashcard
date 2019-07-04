@@ -101,7 +101,7 @@ export class FlashcardComponent implements OnInit {
    
         this.data = this.listWordofTitle;
         console.log(this.data);
-          this.selectedWord = this.data[1];
+          this.selectedWord = this.data[0];
    
   });
 }

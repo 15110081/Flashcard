@@ -72,3 +72,16 @@
 .UITextarea-textarea:focus~.UITextarea-border {
     box-shadow: 0 0.25rem 0 0 #ffcd1f;
 }
+
+tbody {
+    display: block;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+thead,
+tbody tr {
+    display: table;
+    width: 95%;
+    table-layout: fixed;
+}

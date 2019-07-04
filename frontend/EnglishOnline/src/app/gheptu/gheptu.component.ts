@@ -6,6 +6,8 @@ import { FlashcardService } from '../service/flashcard.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { GhepTu } from '../model/gheptu';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { Result } from '../model/result';
+import { count } from 'rxjs/operators';
 declare var $: any;
 @Component({
   selector: 'app-gheptu',
@@ -14,7 +16,7 @@ declare var $: any;
 })
 export class GheptuComponent implements OnInit {
   numberCountItem: number = 0;
-
+  point:number=0;
   constructor(private _sanitizer: DomSanitizer, private route: ActivatedRoute, private location: Location, private titleService: FlashcardService, private token: TokenStorageService) {
 
   }
@@ -35,9 +37,11 @@ export class GheptuComponent implements OnInit {
 
     //     });
     // }
-    this.countdown();
+    // this.countdown();
     this.getWordOfTitle();
+    this.getDataResult();
   }
+  countTrue:number=0;
   idCompare: number;
   idDisplayNone: number;
   clickChoose(id: number, temp: any) {
@@ -61,6 +65,15 @@ export class GheptuComponent implements OnInit {
         $(`#${this.idDisplayNone}` + "back").css("display", "none");
         $(`#${id}` + "back").css("display", "none");
         $(`#${id}` + "front").css("display", "none");
+        this.point+=100;
+        ++this.countTrue;
+        if(this.countTrue===6){this.insertDataResult();
+          $("#grid-1").css("display","none");
+          $(".table-responsive").css("display","block");
+        }
+      }
+      else{
+        this.point-=50;
       }
       this.idDisplayNone = null;
       this.idCompare = null;
@@ -72,53 +85,53 @@ export class GheptuComponent implements OnInit {
     // $(`#${id}`).off("click");
   }
   
-  countdown() {
-    var initial = 3000;
-    var count = initial;
-    var count0=-173;
-    var counter; //10 will  run it every 100th of a second
-    var initialMillis;
+  // countdown() {
+  //   var initial = 3000;
+  //   var count = initial;
+  //   var count0=-173;
+  //   var counter; //10 will  run it every 100th of a second
+  //   var initialMillis;
 
-    function timer() {
-      // if (count <= 0) {
-      //   console.log("THE END");
-      //   displayCount(0);
-      //   clearInterval(counter);
-      //   return;
-      // }
-      var current = Date.now();
+  //   function timer() {
+  //     // if (count <= 0) {
+  //     //   console.log("THE END");
+  //     //   displayCount(0);
+  //     //   clearInterval(counter);
+  //     //   return;
+  //     // }
+  //     var current = Date.now();
 
-      // count = count + (current );
-      count = count - (current - initialMillis);
-      count0=count0+(current - initialMillis);
-      initialMillis = current;
-      console.log(count0+(current - initialMillis));
-      displayCount(count0);
-    }
+  //     // count = count + (current );
+  //     count = count - (current - initialMillis);
+  //     count0=count0+(current - initialMillis);
+  //     initialMillis = current;
+  //     console.log(count0+(current - initialMillis));
+  //     displayCount(count0);
+  //   }
 
-    function displayCount(count) {
-      var res = count / 1000;
-      // var res=count;
-      document.getElementById("timer").innerHTML = res.toPrecision(count.toString().length) + " secs";
-    }
+  //   function displayCount(count) {
+  //     var res = count / 1000;
+  //     // var res=count;
+  //     document.getElementById("timer").innerHTML = res.toPrecision(count.toString().length) + " secs";
+  //   }
 
-    $('#start').on('click', function () {
-      clearInterval(counter);
-      initialMillis = Date.now();
-      counter = setInterval(timer, 1000);
-    });
+  //   $('#start').on('click', function () {
+  //     clearInterval(counter);
+  //     initialMillis = Date.now();
+  //     counter = setInterval(timer, 1000);
+  //   });
 
-    $('#stop').on('click', function () {
-      clearInterval(counter);
-    });
+  //   $('#stop').on('click', function () {
+  //     clearInterval(counter);
+  //   });
 
-    $('#reset').on('click', function () {
-      clearInterval(counter);
-      count = initial;
-      displayCount(count);
-    });
-    displayCount(initial);
-  }
+  //   $('#reset').on('click', function () {
+  //     clearInterval(counter);
+  //     count = initial;
+  //     displayCount(count);
+  //   });
+  //   displayCount(initial);
+  // }
   dataTemp: any;
   listWordofTitle: Word[] = [];
   ListLoad: GhepTu[] = [];
@@ -152,7 +165,7 @@ export class GheptuComponent implements OnInit {
           gt.name = element["vocabulary"];
           gt1.id = element["id"];
           gt1.name = element["imageWord"];
-          gt1.definiton = element["definition"];
+          gt1.definition = element["definition"];
           this.ListLoad.push(gt);
           this.ListLoad.push(gt1);
         }
@@ -181,5 +194,42 @@ export class GheptuComponent implements OnInit {
   }
   getBackground(image) {
     return this._sanitizer.bypassSecurityTrustStyle(`url(http://localhost:9059/upload/file/${image})`)
+  }
+  listResultData:Result[]=[];
+  resultData1:any;
+  dataTemp1:any
+  dateNow=new Date().toLocaleDateString();
+  insertDataResult(){
+    let result=new Result(null,"","","","","");
+      result.result=this.point.toString();
+      result.titleId=this.route.snapshot.paramMap.get('id').toString();
+      result.typeTest="ghepthe";
+      result.username=this.token.getUsername();
+     
+      console.log(result);
+      this.titleService.postResult(this.token.getToken(),result).subscribe(res=>{
+        console.log('done');
+      });
+  }
+  getDataResult(){
+    this.titleService.getResult(this.token.getToken(),"ghepthe",this.route.snapshot.paramMap.get('id')).subscribe(res=>{
+
+      var patt1 = /\/[1-9]+.*/g;
+       this.dataTemp1 = res["_embedded"]["result"];
+      var temp;
+      this.dataTemp1.forEach((element) => {
+        let resultData = new Result(null, "", "", "", "", "");
+        temp = element["_links"]["self"]["href"].match(patt1);
+        resultData["id"] = temp.toString().slice(1);
+        resultData["result"] = element["result"];
+        resultData["username"] = element["username"];
+        resultData["typeTest"] = element["typeTest"];
+        resultData["titleId"] = element["titleId"];
+        resultData["createdDatetime"] = element["createdDatetime"].toString().slice(0,10);
+        this.listResultData.push(resultData);
+      });
+      this.resultData1=this.listResultData;
+      console.table(this.listResultData);
+    });
   }
 }
