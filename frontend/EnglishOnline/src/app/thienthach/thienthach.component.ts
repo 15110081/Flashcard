@@ -6,6 +6,8 @@ import { Word } from '../model/word';
 import { ThienThach } from '../model/thienthach';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 import { build$$ } from 'protractor/built/element';
+import { Result } from '../model/result';
+import { Location } from '@angular/common';
 declare var $:any;
 
 @Component({
@@ -15,7 +17,7 @@ declare var $:any;
 })
 export class ThienthachComponent implements OnInit {
   @ViewChild('abcd') div:ElementRef;
-  constructor(private route: ActivatedRoute,private hotkeysService: HotkeysService, private titleService: FlashcardService, private token: TokenStorageService) 
+  constructor(private location:Location,private route: ActivatedRoute,private hotkeysService: HotkeysService, private titleService: FlashcardService, private token: TokenStorageService) 
   {
     this.hotkeysService.add(
       new Hotkey(
@@ -29,6 +31,7 @@ export class ThienthachComponent implements OnInit {
     );
    
    }
+point:number=0;
    methodInsideYourComponent(){
     // console.log($("#textAnswer").val());
    let flag=0;
@@ -37,9 +40,13 @@ export class ThienthachComponent implements OnInit {
     this.ListLoad.forEach((value,index,array)=>{
       
       if($(`#input${value.id}`).val()===$("#textAnswer").val()){
+        this.point=this.point+100;
         $("#"+value.id).css("opacity","0");
         flag=1;
         return;
+      }
+      else{
+        this.point=this.point-50;
       }
     });
     $("#textAnswer").val("");
@@ -50,11 +57,11 @@ export class ThienthachComponent implements OnInit {
    }
   ngOnInit() {
     this.getWordOfTitle();
-    this.countup();
    
   }
   reloadData() {
     this.ListLoad = this.ListLoad;
+    $("#start").click();
   }
   countup() {
     var initial = -3000;
@@ -62,10 +69,12 @@ export class ThienthachComponent implements OnInit {
     var count0=initial;
     var count1=0;
     var counter; //10 will  run it every 100th of a second
-    var counter1;
+    var chedochoi=$('.custom-select option:selected').val();
     var initialMillis;
     var text=this.ListLoad;
+    // var insertData=this.insertDataResult();
     var temp;
+
     function timer() {
       // if (count0/100 >= 100) {
       //   console.log("THE END");
@@ -108,10 +117,23 @@ export class ThienthachComponent implements OnInit {
       initialMillis = current;
       // console.log(count0/100);
       text.forEach((value,index,array)=>{
-        temp=count0/10+value.distance;
-        $("#"+value.id).css("transform","translateY("+temp+"px)");     
+        temp=count0/chedochoi+value.distance;
+        $("#"+value.id).css("transform","translateY("+temp+"px)"); 
+        if(value.id===array.length-1 && temp>=700) {
+          $('#stop').click();
+          $(".popup").removeClass("popup__close");
+          $("#displayWelcome").css("display","none");
+          $("#displayOut").css("display","block");
+          console.log("STOP RIGHT THERE");
+          // insertData;
+        }   
+        // lastItem=array[array.length-1].distance;
       });
-    
+      // console.log("INSIDE"+lastItem);
+      // if(lastItem===650){
+      //   $('#stop').click();
+      //   console.log("STOP RIGHT THERE");
+      // }
     }
 
     $('#start').on('click', function () {
@@ -127,17 +149,62 @@ export class ThienthachComponent implements OnInit {
     $('#reset').on('click', function () {
       clearInterval(counter);
       count0 = initial;
+      $('.GravityTerm').css("opacity","1");
       this.data = [...this.data];
       
     });
    
   }
-  addCount(){
-    console.log("ADDCOUNT");
-  }  
+    goBack(): void {
+      this.location.back();
+    }
+  
+  clickStart(){
+    console.log($('.custom-select option:selected').val());
+    $(".popup").addClass("popup__close");
+    this.countup();
+    $("#start").click();
+  }
+  listResultData:Result[]=[];
+  resultData1:any;
+  dateNow=new Date().toLocaleDateString();
+  insertDataResult(){
+    let result=new Result(null,"","","","","");
+
+    result.result=this.point.toString();
+    result.titleId=this.route.snapshot.paramMap.get('id').toString();
+    result.typeTest="thienthach";
+    result.username=this.token.getUsername();
+    this.titleService.postResult(this.token.getToken(),result).subscribe(res=>{
+      console.log('done');
+    });
+  }
+getDataResult(){
+  this.titleService.getResult(this.token.getToken(),"thienthach",this.route.snapshot.paramMap.get('id')).subscribe(res=>{
+
+    var patt1 = /\/[1-9]+.*/g;
+     let dataTemp1 = res["_embedded"]["result"];
+    var temp;
+    dataTemp1.forEach((element) => {
+      let resultData = new Result(null, "", "", "", "", "");
+      temp = element["_links"]["self"]["href"].match(patt1);
+      resultData["id"] = temp.toString().slice(1);
+      resultData["result"] = element["result"];
+      resultData["username"] = element["username"];
+      resultData["typeTest"] = element["typeTest"];
+      resultData["titleId"] = element["titleId"];
+      resultData["createdDatetime"] = element["createdDatetime"].toString().slice(0,10);
+      this.listResultData.push(resultData);
+    });
+    this.resultData1=this.listResultData;
+    console.table(this.resultData1);
+  });
+}
+
   dataTemp: any;
   listWordofTitle: Word[] = [];
   ListLoad: ThienThach[] = [];
+  lastItem:any;
   getWordOfTitle() {
     const number = +this.route.snapshot.paramMap.get('id');
 
@@ -169,14 +236,15 @@ export class ThienthachComponent implements OnInit {
           var randomDistance=Math.floor(Math.random() * (+maxDistanceY - +minDistanceY)) + +minDistanceY; 
           tt.randomNumber=random;
           tt.id=index;
-          tt.distance=-200*(index+1);
+          tt.distance=-170*(index+1);
           tt.dinhnghia = element["definition"];
           tt.tuvung = element["vocabulary"];
-          
           this.ListLoad.push(tt);
         }
       });
-      console.log(this.ListLoad);
+      console.table(this.ListLoad);
+      console.log(this.ListLoad.length);
+      console.log(this.ListLoad[this.ListLoad.length-1].distance);
     });
   }
 }

@@ -232,4 +232,8 @@ export class GheptuComponent implements OnInit {
       console.table(this.listResultData);
     });
   }
+  goBack(){
+      this.location.back();
+    
+  }
 }
