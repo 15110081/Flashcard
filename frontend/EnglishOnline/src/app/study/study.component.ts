@@ -225,4 +225,8 @@ console.log("current:"+this.currentIndex);
   goBack(): void {
     this.location.back();
   }
+  checkLoginRole():boolean{
+    if(this.token.getToken()) return true;
+    return false;
+  }
 }

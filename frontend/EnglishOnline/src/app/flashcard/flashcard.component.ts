@@ -112,4 +112,8 @@ export class FlashcardComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+  checkLoginRole():boolean{
+    if(this.token.getToken()) return true;
+    return false;
+  }
 }

@@ -247,4 +247,8 @@ getDataResult(){
       console.log(this.ListLoad[this.ListLoad.length-1].distance);
     });
   }
+  checkLoginRole():boolean{
+    if(this.token.getToken()) return true;
+    return false;
+  }
 }

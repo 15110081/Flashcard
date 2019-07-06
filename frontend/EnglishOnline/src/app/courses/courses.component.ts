@@ -160,4 +160,8 @@ export class CoursesComponent implements OnInit {
       console.log(this.data);
     });
   }
+  checkLoginRole():boolean{
+    if(this.token.getToken()) return true;
+    return false;
+  }
 }

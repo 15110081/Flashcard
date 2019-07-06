@@ -1,27 +1,90 @@
-<div class="containerlogin">
-    <!-- Start Header Area -->
-    <header id="header" style="overflow: hidden; background-color:rgba(0, 0, 0, 0.9) ; color: white">
-        <div class="container">
-            <div class="row align-items-center justify-content-between d-flex">
-                <div id="logo">
-                    <a href="index.html"><img src="../../assets/img/logo.png" alt="" title="" /></a>
-                </div>
+<div *ngIf="checkLoginRole(); else loggedOut">
+    <div class="popup" id="popup">
+        <div class="popup__content" style="text-align: center;">
+            <span class="AssistantFeedbackHeading-emoji">
+        <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="64"
+        height="64"
+        viewBox="0 0 64 64"
+      >
+        <circle fill="#FDCA47" cx="32" cy="32" r="30"></circle>
+        <path
+          fill="#F9B700"
+          d="M51.654 9.346A29.874 29.874 0 0 1 59 29c0 16.568-13.432 30-30 30a29.865 29.865 0 0 1-19.654-7.346C14.846 57.99 22.952 62 32 62c16.568 0 30-13.432 30-30 0-9.047-4.012-17.152-10.346-22.654z"
+        ></path>
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          fill="#FFE8BB"
+          d="M6.418 20.5C5.302 24.242 13 11 25 6.084c5.834-2.391-13.832-1.5-18.582 14.416z"
+        ></path>
+        <circle fill="#302C3B" cx="20.5" cy="24.5" r="5"></circle>
+        <circle fill="#302C3B" cx="43.5" cy="24.5" r="5"></circle>
+        <path
+          fill="#302C3B"
+          d="M51 37.789c0-.893-.529-2.01-2.037-2.297C45.092 34.756 39.373 34 32 34h-.002c-7.369 0-13.091.756-16.961 1.492-1.508.287-2.037 1.404-2.037 2.297C13 45.867 19.271 54 31.998 54H32c12.729 0 19-8.133 19-16.211z"
+        ></path>
+        <path
+          fill="#1A1626"
+          d="M33.844 42c-.578-.012-1.471.455-1.145 1.688.163.621 1.191 1.375 1.191 2.381 0 2.045-3.783 2.045-3.783 0 0-1.006 1.027-1.76 1.193-2.381.327-1.232-.566-1.699-1.146-1.688-1.574.037-4.155 1.498-4.155 3.969C25.999 48.748 28.686 51 32 51c3.311 0 5.998-2.252 5.998-5.031 0-2.471-2.582-3.932-4.154-3.969z"
+        ></path>
+        <path
+          fill="#F46C60"
+          d="M24 50.082c2.313 1.051 4.979 1.668 8 1.668s5.688-.617 8-1.668c-2.23-1.139-4.887-1.832-8-1.832-3.115 0-5.768.693-8 1.832z"
+        ></path>
+        <path
+          fill="#FFF"
+          d="M46.504 38.037C43.996 37.66 38.688 37 31.998 37c-6.688 0-11.993.66-14.503 1.037-1.479.221-1.568.76-1.466 1.52.062.451.156 1 .302 1.588.162.652.291.824 1.447.836 2.221.027 26.222.027 28.444 0 1.156-.012 1.281-.184 1.445-.836.145-.588.242-1.137.301-1.588.106-.76.012-1.299-1.464-1.52z"
+        ></path></svg></span>
+            <h3 class="UIHeading UIHeading--three" style="margin-bottom: 0;margin-left: 0;margin-right: 0;font-weight: 700;font-size: 1.875rem;line-height: 1.266666666666667;">
+                <span>Làm cho tất cả mọi thứ biến mất!</span>
+            </h3>
+            <div class="UIDiv MatchModeInstructionsModal-description">
+                <p class="UIParagraph">
+                    <span>Kéo các vật phẩm tương ứng chồng lên nhau sẽ khiến chúng biến
+          mất.</span
+        >
+      </p>
+    </div>
+    <div
+      class="MatchModeInstructionsModal-button"
+      style="margin-top:2.5rem !important;"
+    >
+      <button
+        class="UIButton UIButton--hero"
+        type="button"
+        (click)="clickStart()"
+      >
+        <span class="UIButton-wrapper"><span>Bắt đầu chơi</span></span>
+                    </button>
             </div>
         </div>
-    </header>
-    <!-- End Header Area -->
+    </div>
+    <div class="containerlogin">
+        <!-- Start Header Area -->
+        <header id="header" style="overflow: hidden; background-color:rgba(0, 0, 0, 0.9) ; color: white">
+            <div class="container">
+                <div class="row align-items-center justify-content-between d-flex">
+                    <div id="logo">
+                        <a routerLink="/homepage"><img src="../../assets/img/logo.png" alt="" title="" /></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- End Header Area -->
 
-    <div id="CardsModeTarget">
-        <div class="CardsModeLayout">
-            <div class="ModeLayout is-showingAdz">
-                <div class="UIContainer">
-                    <div class="ModeLayout-controls" style="top: 80px;">
-                        <div>
-                            <div class="ModeControls">
-                                <aside class="ModeControls-sidebar">
-                                    <div class="ModeControls-back">
-                                        <a class="UILink" href="javascript:void(0);" (click)="goBack()">
-                                            <b><i
+        <div id="CardsModeTarget">
+            <div class="CardsModeLayout">
+                <div class="ModeLayout is-showingAdz">
+                    <div class="UIContainer">
+                        <div class="ModeLayout-controls" style="top: 80px;">
+                            <div>
+                                <div class="ModeControls">
+                                    <aside class="ModeControls-sidebar">
+                                        <div class="ModeControls-back">
+                                            <a class="UILink" href="javascript:void(0);" (click)="goBack()">
+                                                <b><i
                           class="fa fa-angle-left"
                           style="color: #39cfca; font-size: 16px"
                         ></i>
@@ -370,3 +433,7 @@
    
   </div>
 </div>
+</div>
+<ng-template #loggedOut>
+  <app-login></app-login>
+</ng-template>

@@ -1,27 +1,28 @@
-<div class="containerlogin">
-    <!-- Start Header Area -->
-    <header id="header" style="overflow: hidden; background-color:rgba(0, 0, 0, 0.9) ; color: white">
-        <div class="container">
-            <div class="row align-items-center justify-content-between d-flex">
-                <div id="logo">
-                    <a href="index.html"><img src="../../assets/img/logo.png" alt="" title="" /></a>
+<div *ngIf="checkLoginRole(); else loggedOut">
+    <div class="containerlogin">
+        <!-- Start Header Area -->
+        <header id="header" style="overflow: hidden; background-color:rgba(0, 0, 0, 0.9) ; color: white">
+            <div class="container">
+                <div class="row align-items-center justify-content-between d-flex">
+                    <div id="logo">
+                        <a routerLink="/homepage"><img src="../../assets/img/logo.png" alt="" title="" /></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <!-- End Header Area -->
+        </header>
+        <!-- End Header Area -->
 
-    <div id="CardsModeTarget">
-        <div class="CardsModeLayout">
-            <div class="ModeLayout is-showingAdz">
-                <div class="UIContainer">
-                    <div class="ModeLayout-controls" style="top: 80px;">
-                        <div>
-                            <div class="ModeControls">
-                                <aside class="ModeControls-sidebar">
-                                    <div class="ModeControls-back">
-                                        <a class="UILink" href="detail.html">
-                                            <b><i
+        <div id="CardsModeTarget">
+            <div class="CardsModeLayout">
+                <div class="ModeLayout is-showingAdz">
+                    <div class="UIContainer">
+                        <div class="ModeLayout-controls" style="top: 80px;">
+                            <div>
+                                <div class="ModeControls">
+                                    <aside class="ModeControls-sidebar">
+                                        <div class="ModeControls-back">
+                                            <a class="UILink" href="javascript:history.back()">
+                                                <b><i
                           class="fa fa-angle-left"
                           style="color: #39cfca; font-size: 16px"
                         ></i>
@@ -243,3 +244,7 @@
     
     </div>
   </div>
+</div>
+  <ng-template #loggedOut>
+    <app-login></app-login>
+</ng-template>

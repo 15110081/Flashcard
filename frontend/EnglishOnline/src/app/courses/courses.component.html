@@ -1,151 +1,154 @@
-<app-header></app-header>
-<!-- Start Banner Area -->
-<section class="banner-area relative">
-    <div class="container">
-        <div class="row d-flex align-items-center justify-content-center">
-            <div class="about-content col-lg-12">
-                <h1 class="text-white">
-                    Học phần
-                </h1>
-                <p>Hàng ngàn học phần do chính người dùng tạo ra để chia sẻ kiến thức, tạo nên một cộng đồng học tập lành mạnh và bổ ích</p>
-                <div class="link-nav">
-                    <span class="box">
-            <a href="index.html">Trang chủ </a>
+<div *ngIf="checkLoginRole(); else loggedOut">
+    <app-header></app-header>
+    <!-- Start Banner Area -->
+    <section class="banner-area relative">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Học phần
+                    </h1>
+                    <p>Hàng ngàn học phần do chính người dùng tạo ra để chia sẻ kiến thức, tạo nên một cộng đồng học tập lành mạnh và bổ ích</p>
+                    <div class="link-nav">
+                        <span class="box">
+            <a routerLink="/homepage">Trang chủ </a>
             <i class="lnr lnr-arrow-right"></i>
-            <a href="courses.html">Học phần</a>
+            <a routerLink="/courses">Học phần</a>
           </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- End Banner Area -->
+    </section>
+    <!-- End Banner Area -->
 
 
-<!--Start Feature Area -->
-<section class="feature-area">
-    <div class="container" style="margin-bottom: 50px;">
-        <div class="row justify-content-center" style="margin-bottom: -100px;">
-            <div class="col-sm-12">
-                <div class="section-title text-center">
-                    <h1 style="text-align: left;">Học phần</h1>
+    <!--Start Feature Area -->
+    <section class="feature-area">
+        <div class="container" style="margin-bottom: 50px;">
+            <div class="row justify-content-center" style="margin-bottom: -100px;">
+                <div class="col-sm-12">
+                    <div class="section-title text-center">
+                        <h1 style="text-align: left;">Học phần</h1>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="feature-inner row">
-            <div class="col-lg-4 col-md-6" *ngFor="let title of data" style="cursor: pointer;" (click)="RedirectDetailTitle(title.id)">
-                <div class="HomepageStudySets-studySet HomepageStudySets-studySet--hasImage">
-                    <div class="SetPreviewLink">
-                        <div class="UILinkBox">
-                            <div class="UILinkBox-inner">
-                                <div class="SetPreviewLink-image" [style.background-image]="getBackground(title.imageTitle)"></div>
-                                <div class="SetPreview">
-                                    <div class="SetPreview-inner">
-                                        <div class="PreviewCardByline"><span class="SetPreview-cardBylineTermsCount">{{title.size}} thuật ngữ</span><span class="UIVerticalRule UIVerticalRule--onWhite"></span>
-                                            <div class="SetPreview-cardBylineCreator">
-                                                <div class="UserLink">
-                                                    <div class="UserLink-inner">
-                                                        <div class="UserLink-content"><a class="UILink" href="#" title="Thăm hồ sơ của nhale"><span class="UserLink-username">{{title.createdDatetime}}</span></a>
+            <div class="feature-inner row">
+                <div class="col-lg-4 col-md-6" *ngFor="let title of data" style="cursor: pointer;" (click)="RedirectDetailTitle(title.id)">
+                    <div class="HomepageStudySets-studySet HomepageStudySets-studySet--hasImage">
+                        <div class="SetPreviewLink">
+                            <div class="UILinkBox">
+                                <div class="UILinkBox-inner">
+                                    <div class="SetPreviewLink-image" [style.background-image]="getBackground(title.imageTitle)"></div>
+                                    <div class="SetPreview">
+                                        <div class="SetPreview-inner">
+                                            <div class="PreviewCardByline"><span class="SetPreview-cardBylineTermsCount">{{title.size}} thuật ngữ</span><span class="UIVerticalRule UIVerticalRule--onWhite"></span>
+                                                <div class="SetPreview-cardBylineCreator">
+                                                    <div class="UserLink">
+                                                        <div class="UserLink-inner">
+                                                            <div class="UserLink-content"><a class="UILink" href="#" title="Thăm hồ sơ của nhale"><span class="UserLink-username">{{title.createdDatetime}}</span></a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <header class="SetPreview-cardHeader">
-                                            <span class="SetPreview-cardHeaderTitle">{{title.name}}</span>
-                                        </header>
-                                        <div class="SetPreviewLink-metadata">
-                                            <div class="SetPreviewLink-priceTag">
-                                                <h4 class="UIHeading UIHeading--four"></h4>
+                                            <header class="SetPreview-cardHeader">
+                                                <span class="SetPreview-cardHeaderTitle">{{title.name}}</span>
+                                            </header>
+                                            <div class="SetPreviewLink-metadata">
+                                                <div class="SetPreviewLink-priceTag">
+                                                    <h4 class="UIHeading UIHeading--four"></h4>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="UILinkBox-link">
-                                <a class="UILink" data-sourcename="homepage-set-preview" href="detail.html" title="hóa học từ vựng"></a>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- End Feature Area -->
+    </section>
+    <!-- End Feature Area -->
 
-<div class="container" style="margin-bottom: 50px;">
-    <div class="navigation">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item">
-                    <button class="page-link" (click)="PageClick(0);" aria-label="Previous">
+    <div class="container" style="margin-bottom: 50px;">
+        <div class="navigation">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <button class="page-link" (click)="PageClick(0);" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Previous</span>
                     </button>
-                </li>
+                    </li>
 
-                <li class="page-item" *ngFor="let number of numbers;let info of page">
-                    <a class="page-link" (click)="PageClick(number)" href="javascript: return false;">{{number}}</a></li>
+                    <li class="page-item" *ngFor="let number of numbers;let info of page">
+                        <a class="page-link" (click)="PageClick(number)" href="javascript: return false;">{{number}}</a></li>
 
-                <li class="page-item">
-                    <button class="page-link" (click)="viewLastPage();" aria-label="Next">
+                    <li class="page-item">
+                        <button class="page-link" (click)="viewLastPage();" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>
                     </button>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>
-
-
-
-
-<!-- Start Footer Area -->
-<footer class="footer-area section-gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 single-footer-widget">
-                <h4>EYOURSEFT</h4>
-            </div>
-            <div class="col-lg-3 col-md-6 single-footer-widget">
-                <h4>Danh mục</h4>
-                <ul>
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Học phần</a></li>
-                    <li><a href="#">Chi tiết</a></li>
-                    <li><a href="#">Đăng nhập</a></li>
+                    </li>
                 </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 single-footer-widget">
-                <h4>Tính năng</h4>
-                <ul>
-                    <li><a href="#">Thẻ ghi nhớ</a></li>
-                    <li><a href="#">Học</a></li>
-                    <li><a href="#">Viết</a></li>
-                    <li><a href="#">Chính tả</a></li>
-                    <li><a href="#">Kiểm tra</a></li>
-                    <li><a href="#">Ghép thẻ</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 single-footer-widget">
-                <h4>Thông tin liên hệ</h4>
-                <p>Email: eyourself@gmail.com</p>
-                <p>Điện thoại: 098.758.9747</p>
-            </div>
-        </div>
-        <div class="footer-bottom row align-items-center">
-            <p class="footer-text m-0 col-lg-8 col-md-12">
-                © 2019 EYourself Inc
-            </p>
+            </nav>
         </div>
     </div>
-</footer>
-<!-- End Footer Area -->
 
-<!-- ####################### Start Scroll to Top Area ####################### -->
-<div id="back-top">
-    <a title="Go to Top" href="#"></a>
+
+
+
+    <!-- Start Footer Area -->
+    <footer class="footer-area section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 single-footer-widget">
+                    <h4>EYOURSEFT</h4>
+                </div>
+                <div class="col-lg-3 col-md-6 single-footer-widget">
+                    <h4>Danh mục</h4>
+                    <ul>
+                        <li><a href="#">Trang chủ</a></li>
+                        <li><a href="#">Học phần</a></li>
+                        <li><a href="#">Chi tiết</a></li>
+                        <li><a href="#">Đăng nhập</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 single-footer-widget">
+                    <h4>Tính năng</h4>
+                    <ul>
+                        <li><a href="#">Thẻ ghi nhớ</a></li>
+                        <li><a href="#">Học</a></li>
+                        <li><a href="#">Viết</a></li>
+                        <li><a href="#">Chính tả</a></li>
+                        <li><a href="#">Kiểm tra</a></li>
+                        <li><a href="#">Ghép thẻ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 single-footer-widget">
+                    <h4>Thông tin liên hệ</h4>
+                    <p>Email: eyourself@gmail.com</p>
+                    <p>Điện thoại: 098.758.9747</p>
+                </div>
+            </div>
+            <div class="footer-bottom row align-items-center">
+                <p class="footer-text m-0 col-lg-8 col-md-12">
+                    © 2019 EYourself Inc
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer Area -->
+
+    <!-- ####################### Start Scroll to Top Area ####################### -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"></a>
+    </div>
+    <!-- ####################### End Scroll to Top Area ####################### -->
 </div>
-<!-- ####################### End Scroll to Top Area ####################### -->
+<ng-template #loggedOut>
+    <app-login></app-login>
+</ng-template>

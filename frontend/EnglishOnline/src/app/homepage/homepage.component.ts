@@ -24,6 +24,10 @@ export class HomepageComponent implements OnInit {
   listTitle: Title[] = [];
   data: any;
  
+  checkLoginRole():boolean{
+    if(this.token.getToken()) return true;
+    return false;
+  }
   loadWord()
 {
   

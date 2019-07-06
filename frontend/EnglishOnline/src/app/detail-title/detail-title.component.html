@@ -1,30 +1,31 @@
-<div class="containerlogin" style="margin: 0 287px;width: auto;padding: 121px;background-color: #f9f9ff;">
-    <!-- Start Header Area -->
-    <header id="header" style="overflow: hidden; background-color:rgba(0, 0, 0, 0.9) ; color: white">
-        <div class="container">
-            <div class="row align-items-center justify-content-between d-flex">
-                <div id="logo">
-                    <a href="index.html"><img src="../../assets/img/logo.png" alt="" title="" /></a>
+<div *ngIf="checkLoginRole(); else loggedOut">
+    <div class="containerlogin" style="margin: 0 287px;width: auto;padding: 121px;background-color: #f9f9ff;">
+        <!-- Start Header Area -->
+        <header id="header" style="overflow: hidden; background-color:rgba(0, 0, 0, 0.9) ; color: white">
+            <div class="container">
+                <div class="row align-items-center justify-content-between d-flex">
+                    <div id="logo">
+                        <a routerLink="/homepage"><img src="../../assets/img/logo.png" alt="" title="" /></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <!-- End Header Area -->
+        </header>
+        <!-- End Header Area -->
 
 
 
-    <div style="display:flex;flex-direction: column;">
-        <div style="font-size: 1.875rem;
+        <div style="display:flex;flex-direction: column;">
+            <div style="font-size: 1.875rem;
             word-break: break-word;font-weight: 700;line-height: 1.142857142857143;color:#455358;">Chủ Đề: {{title.name}} </div>
-        <span style="font-size:10px;font-weight: 300px; ">{{title.createdDatetime}}</span>
-        <div style="display:flex;flex-direction: row;background-color: #f9f9ff;margin: 12px;">
-            <nav aria-label="Study modes" style="width: 6.9375rem; flex:1;">
-                <div class="UIRow">
-                    <div class="SetPageModes-group SetPageModes-group--study">
-                        <div class="SetPageModes-groupLabel">
-                            <h6 class="UIHeading UIHeading--six"><span>HỌC</span></h6>
-                        </div>
-                        <span class="SetPageModes-buttonWrapper"><a
+            <span style="font-size:10px;font-weight: 300px; ">{{title.createdDatetime}}</span>
+            <div style="display:flex;flex-direction: row;background-color: #f9f9ff;margin: 12px;">
+                <nav aria-label="Study modes" style="width: 6.9375rem; flex:1;">
+                    <div class="UIRow">
+                        <div class="SetPageModes-group SetPageModes-group--study">
+                            <div class="SetPageModes-groupLabel">
+                                <h6 class="UIHeading UIHeading--six"><span>HỌC</span></h6>
+                            </div>
+                            <span class="SetPageModes-buttonWrapper"><a
                                 aria-label="Thẻ ghi nhớ"
                                 class="SetPageModeButton is-highlighted"
                                 data-sourcename="mode-link-flashcards"
@@ -46,9 +47,9 @@
                                     </div>
                                     </div>
                                     <span class="SetPageModeButton-modeName">Thẻ ghi nhớ</span>
-                    </div>
-                    </a>
-                    </span><span class="SetPageModes-buttonWrapper"><a
+                        </div>
+                        </a>
+                        </span><span class="SetPageModes-buttonWrapper"><a
                                 aria-label="Học"
                                 class="SetPageModeButton"
                                 data-sourcename="mode-link-learn"
@@ -75,9 +76,9 @@
                                     </div>
                                     </div>
                                     <span class="SetPageModeButton-modeName">Học</span>
-                </div>
-                </a>
-                </span><span class="SetPageModes-buttonWrapper"><a
+                    </div>
+                    </a>
+                    </span><span class="SetPageModes-buttonWrapper"><a
                                 aria-label="Viết"
                                 class="SetPageModeButton"
                                 data-sourcename="mode-link-write"
@@ -99,16 +100,16 @@
                                     </div>
                                     </div>
                 <span class="SetPageModeButton-modeName">Viết</span>
-        </div>
-        </a>
-        </span>
+            </div>
+            </a>
+            </span>
 
-    </div>
-    <div class="SetPageModes-group SetPageModes-group--play">
-        <div class="SetPageModes-groupLabel">
-            <h6 class="UIHeading UIHeading--six"><span>TRÒ CHƠI</span></h6>
         </div>
-        <span class="SetPageModes-buttonWrapper"><a
+        <div class="SetPageModes-group SetPageModes-group--play">
+            <div class="SetPageModes-groupLabel">
+                <h6 class="UIHeading UIHeading--six"><span>TRÒ CHƠI</span></h6>
+            </div>
+            <span class="SetPageModes-buttonWrapper"><a
                                     aria-label="Ghép thẻ"
                                     class="SetPageModeButton"
                                     data-sourcename="mode-link-match"
@@ -130,10 +131,10 @@
                                         </div>
                                         </div>
                                         <span class="SetPageModeButton-modeName">Ghép thẻ</span>
-    </div>
-    </a>
-    </span>
-    <span class="SetPageModes-buttonWrapper">
+        </div>
+        </a>
+        </span>
+        <span class="SetPageModes-buttonWrapper">
                                     <a aria-label="Thiên thạch"
                                         class="SetPageModeButton"
                                         data-sourcename="mode-link-gravity"
@@ -155,9 +156,9 @@
                                             </div>
                                             </div>
                                             <span class="SetPageModeButton-modeName">Thiên thạch</span>
-</div>
-</a>
-</span>
+    </div>
+    </a>
+    </span>
 </div>
 </div>
 </nav>
@@ -170,3 +171,7 @@
 <div style="margin-top: 20px;">{{title.description}}</div>
 </div>
 </div>
+</div>
+<ng-template #loggedOut>
+    <app-login></app-login>
+</ng-template>

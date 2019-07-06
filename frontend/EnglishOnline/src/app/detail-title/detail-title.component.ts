@@ -34,5 +34,9 @@ export class DetailTitleComponent implements OnInit {
     });
     
   }
+  checkLoginRole():boolean{
+    if(this.token.getToken()) return true;
+    return false;
+  }
 
 }

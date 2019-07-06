@@ -236,4 +236,12 @@ export class GheptuComponent implements OnInit {
       this.location.back();
     
   }
+  clickStart(){
+     
+    $(".popup").addClass("popup__close");
+  }
+  checkLoginRole():boolean{
+    if(this.token.getToken()) return true;
+    return false;
+  }
 }
